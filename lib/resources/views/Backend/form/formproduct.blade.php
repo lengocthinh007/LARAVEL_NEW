@@ -28,8 +28,24 @@
                      <span class="err">{{ $errors->first('pro_number') }}</span>
                     @endif
                 </div>
-                <div class="form-group">
+                      <div class="form-group">
                   <label>Mô tả</label>
+                <textarea id="demo1" rows="5" class="form-control" name="description">{!! old('description',isset($data) ? $data['description'] : null) !!}</textarea>
+                  <script type="text/javascript">
+                      var editor = CKEDITOR.replace('demo1',{
+                        language:'vi',
+                        filebrowserImageBrowseUrl: '../ckfinder/ckfinder.html?Type=Images',
+                        filebrowserFlashBrowseUrl: '../ckfinder/ckfinder.html?Type=Flash',
+                        filebrowserImageUploadUrl: '../ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
+                        filebrowserFlashUploadUrl: '../ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash',
+                        });
+                    </script>
+                  @if($errors->has('description'))
+                     <span class="err">{{ $errors->first('description') }}</span>
+                    @endif
+                </div>
+                <div class="form-group">
+                  <label>Nội Dung</label>
                 <textarea id="demo" rows="5" class="form-control" name="content">{!! old('content',isset($data) ? $data['pro_content'] : null) !!}</textarea>
                   <script type="text/javascript">
                       var editor = CKEDITOR.replace('demo',{

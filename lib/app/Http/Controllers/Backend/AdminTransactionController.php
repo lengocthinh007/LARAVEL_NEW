@@ -12,7 +12,7 @@ use DB;
 class AdminTransactionController extends Controller
 {
      public function index(){
-    	$Transaction = Transaction::with('user:id,name')->paginate(10);
+    	$Transaction = Transaction::with('user:id,name')->get();
     	
     	$viewdata = [
     		'transaction' => $Transaction
@@ -43,6 +43,20 @@ class AdminTransactionController extends Controller
         DB::table('users')->where('id',$Transaction->user_id)->increment('total_pay');
         $Transaction->status = Transaction::STATUS_DONE;
         $Transaction->save();
-        return redirect()->back()->with(['level'=>'success','message'=>'Xử lí thành công']);
+         $notification = array(
+                'message' => 'Xử Lí Thành Công!',
+                'alert-type' => 'success'
+            );
+        return redirect()->back()->with($notification);
+    }
+
+    public function delete($id){
+        $Transaction = Transaction::find($id);
+        $Transaction->delete($id);
+        $notification = array(
+                'message' => 'Xóa Thành Công!',
+                'alert-type' => 'success'
+            );
+        return redirect()->back()->with($notification);
     }
 }

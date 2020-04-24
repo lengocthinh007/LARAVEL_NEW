@@ -6,7 +6,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="csrf-token" content="{{ csrf_token() }}" />
-	<title>Lumino UI Elements</title>
+	<title>@yield('title')</title>
 	<link href="css/bootstrap.min.css" rel="stylesheet">
 	<link rel='stylesheet' href='../fontawesome/css/all.min.css'>
 	<link href="css/styles.css" rel="stylesheet">
@@ -105,7 +105,9 @@
 			</div>
 		</form>
 		<ul class="nav menu">
-			<li><a href="index.html"><em class="fa fa-dashboard">&nbsp;</em> Dashboard</a></li>
+			<li
+			class="{{\Request::route()->getName()=='home'?'active':''}}" 
+			><a href="{{asset('admin/home')}}"><em class="fa fa-list">&nbsp;</em> Tổng Quang</a></li>
 			<li
 			class="{{\Request::route()->getName()=='admin.cate.list'?'active':''}}" 
 			><a href="{{asset('admin/category')}}"><em class="fa fa-list">&nbsp;</em> Danh Mục</a></li>
@@ -118,6 +120,9 @@
 			<li
 			class="{{\Request::route()->getName()=='admin.user.index'?'active':''}}"
 			><a href="{{asset('admin/user')}}"><em class="fa fa-clone">&nbsp;</em> Thành Viên</a></li>
+			<li
+			class="{{\Request::route()->getName()=='kho'?'active':''}}"
+			><a href="{{asset('admin/kho')}}"><em class="fa fa-clone">&nbsp;</em>Kho</a></li>
 			<li class="parent "><a data-toggle="collapse" href="#sub-item-1">
 				<em class="fa fa-navicon">&nbsp;</em> Quản lí <span data-toggle="collapse" href="#sub-item-1" class="icon pull-right"><em class="fa fa-plus"></em></span>
 				</a>
@@ -138,7 +143,7 @@
 	</div><!--/.sidebar-->
 		
 	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
-		<div class="row">
+		<div class="row" style="margin-bottom: 10px">
 			<ol class="breadcrumb">
 				<li><a href="#">
 					<em class="fa fa-home"></em>
@@ -147,11 +152,7 @@
 			</ol>
 		</div><!--/.row-->
 		
-		<div class="row">
-			<div class="col-lg-12">
-				<h1 class="page-header">@yield('title')</h1>
-			</div>
-		</div><!--/.row-->
+	
 				
 
 		

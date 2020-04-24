@@ -9,6 +9,7 @@ use App\Model\Product;
 use App\Model\Product_img;
 use Illuminate\Support\Str;
 use App\Http\Requests\productrequest;
+use Image;
 
 class AdminProductController extends Controller
 {
@@ -62,8 +63,9 @@ class AdminProductController extends Controller
             $idHinh= $id;
             $image_detail= Product_img::find($idHinh);
             if(!empty($image_detail)){
-                if(file_exists("public/HinhDetails/".$image_detail->image)){
-                     unlink("public/HinhDetails/".$image_detail->image);
+                if(file_exists("public/HinhDetails/small/".$image_detail->image)){
+                     unlink("public/HinhDetails/small/".$image_detail->image);
+                     unlink("public/HinhDetails/large/".$image_detail->image);
                 }
                 $image_detail->delete();
             }
@@ -82,6 +84,7 @@ class AdminProductController extends Controller
         $product->pro_sale = $request->Sale;
         $product->pro_number = $request->pro_number;
         $product->pro_content = $request->content ?  $request->content : '';
+        $product->description = $request->description ?  $request->description : '';
         $product->cate_id = $request->cate;
           if($request->img){
              if(isset($product->image)){
@@ -138,14 +141,18 @@ class AdminProductController extends Controller
                                    {
                                       $filename = $file->getClientOriginalName();
                                       $Hinh = $filename;
-                                      while(file_exists("public/HinhDetails/".$Hinh))
+                                      while(file_exists("public/HinhDetails/small/".$Hinh))
                                           {
                                               $Hinh = rand() . '.' . $filename;
                                           }
                                          
                                       $product_img->image = $Hinh;
                                       $product_img->product_id=$id;
-                                      $file->move("public/HinhDetails",$Hinh);
+                                      // $file->move("public/HinhDetails",$Hinh);
+                                      $large_path='public/HinhDetails/large/'.$Hinh;
+                                      $small_path='public/HinhDetails/small/'.$Hinh;
+                                      Image::make($file->getRealPath())->resize(150,150)->save($small_path);
+                                      Image::make($file->getRealPath())->resize(300,300)->save($large_path);
                                       $product_img->save();
                                        $result[] = array(
                                             'id' => $product_img->id,

@@ -29,8 +29,9 @@ class productrequest extends FormRequest
                      'price'=>'required|max:10',
                      'Sale'=>'required|max:10',
                      'pro_number'=>'required|max:10',
-                     'img'=>'required|image',
-                     'cate'=>'required|not_in:0'
+                     'img'=>'image',
+                     'cate'=>'required|not_in:0',
+                     'description'=>'required'
         ];
     }
      public function messages(){
@@ -41,7 +42,7 @@ class productrequest extends FormRequest
                     'cate.required'=>'Chưa chọn danh mục',
                      'cate.not_in'=>'Chưa chọn danh mục',
                     'img.image'=>'Chỉ chọn ảnh',
-                    'img.required'=>'Chưa chọn ảnh',
+                    'description.required'=>'Chưa nhập mô tả',
                     'price.required'=>'Bạn chưa nhập giá',
                     'price.max'=>'Giới hạn 10 chữ số',
                     'Sale.max'=>'Giới hạn 10 chữ số',

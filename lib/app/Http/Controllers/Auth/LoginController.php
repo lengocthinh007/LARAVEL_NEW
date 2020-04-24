@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -19,22 +21,48 @@ class LoginController extends Controller
     |
     */
 
-    use AuthenticatesUsers;
-
-    /**
-     * Where to redirect users after login.
-     *
-     * @var string
-     */
-    protected $redirectTo = RouteServiceProvider::HOME;
-
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
+     public function getlogin()
     {
-        $this->middleware('guest')->except('logout');
+        return view('Backend.Auth.login');
+    }
+        public function postLogin(Request $request){
+        $arr = ['email'=>$request->email,'password'=>$request->password];
+        if($request->remember='Remember Me'){
+            $remember=true;
+        }
+        else{
+            $remember=false;
+        }
+        if(Auth::attempt($arr,$remember)){
+            return redirect()->intended('/');
+        }else{
+            return back()->withInput()->with(['level'=>'danger','message'=>'Tài khoản hoặc mật khẩu không đúng']);
+        }
+    }
+    public function logout()
+    {
+        Auth::logout();
+        return redirect()->intended('/');
+    }
+
+
+    public function getloginadmin()
+    {
+        return view('Backend.Auth.loginadmin');
+    }
+
+    public function postLoginadmin(Request $request){
+        $data = $request->only('email','password');
+        if(Auth::guard('admin')->attempt($data)){
+            return redirect()->intended('admin/home');
+        }else{
+            return back()->withInput()->with(['level'=>'danger','message'=>'Tài khoản hoặc mật khẩu không đúng']);
+        }
+    }
+
+      public function logoutadmin()
+    {
+        Auth::guard('admin')->logout();
+        return redirect()->intended('Admin/login');
     }
 }

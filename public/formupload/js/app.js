@@ -151,7 +151,7 @@ $(function() {
                          {
                             $.each (data, function (key, item){
                             html +=  '<div  id="'+item['id']+'"  style="display:inline; padding: 5px;">';
-                             html +=  '<img idHinh="'+item['id']+'" width="110px" src="../../public/HinhDetails/'+item['img']+'">';
+                             html +=  '<img idHinh="'+item['id']+'" width="110px" src="../../public/HinhDetails/small/'+item['img']+'">';
                              html += '<a data-key="'+item['id']+'" style="position: relative;top: -50px;left: -40px;font-size: 10px;border-radius: 45px" class="btn btn-danger btn-circle icon_del dell"  href="../../admin/product/delimg/'+item['id']+'"><i class="fa fa-times"></i></a>';
                                 html +=  '</div>';
                             });

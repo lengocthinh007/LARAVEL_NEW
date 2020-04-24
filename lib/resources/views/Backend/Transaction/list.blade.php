@@ -1,5 +1,5 @@
 @extends('Backend.master')
-@section('title','Danh mục')
+@section('title','Đơn Hàng')
 @section('main') 
 <div class="row">
 			<div class="col-lg-12">
@@ -19,21 +19,23 @@
                 </thead>
                 <tbody>
                    @if(isset($transaction))
+                   <?php $stt=0 ?>
                     @foreach($transaction as $item)
+                     <?php $stt= $stt + 1;?>
                 <tr>
-                  <td>{!! $item['id'] !!}</td>
+                  <td>{!! $stt !!}</td>
                   <td>{{ isset($item->user->name) ? $item->user->name : 'gdf'}}</td>
                   <td>{!! $item['phone'] !!}</td>
                   <td>{!! $item['total'] !!}</td>
                   <td>@if($item['status'] ==1)
-                   <a href="{{asset('admin/transaction/')}}" class="badge badge-primary"> Đã xử lý</a>
+                   <a href="{{asset('admin/transaction/')}}" class="label label-default"> Đã xử lý</a>
                     @else
-                    <a href="{{asset('admin/transaction/active/'.$item['id'])}}" class="badge badge-warning">Chưa xử lý</a>
+                    <a href="{{asset('admin/transaction/active/'.$item['id'])}}" class="label label-info">Chưa xử lý</a>
                     @endif
                   </td>
                   <td style="text-align: center;">
                               <a href="{{asset('admin/transaction/view'.$item['id'])}}" data-key="{{$item['id']}}" class="btn btn-warning js_order_item"><span class="glyphicon glyphicon-edit"></span> Xem</a>
-                              <a href="{{asset('admin/category/delete/'.$item['id'])}}" onclick="return xacnhanxoa('Bạn có chắc chắn muốn xóa?')" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> Xóa</a>
+                              <a href="{{asset('admin/transaction/delete/'.$item['id'])}}" onclick="return xacnhanxoa('Bạn có chắc chắn muốn xóa?')" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> Xóa</a>
                             </td>
                           </tr>
                        @endforeach
@@ -74,6 +76,12 @@
 @stop
 @section('script')
 <script type="text/javascript">
+  function xacnhanxoa(msg)  {
+  if(window.confirm(msg)){
+    return true;
+  }
+  return false;
+}
   $(function(){
     $('.js_order_item').click(function(event){
       event.preventDefault();

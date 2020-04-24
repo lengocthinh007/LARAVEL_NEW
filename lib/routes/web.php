@@ -12,24 +12,26 @@
 */
 Route::group(['namespace'=>'Frontend'],function(){
 		Route::get('/','Homecontroller@getHome');
-});
-Route::get('loaisanpham/{id}/{alias}','Frontendcontroller@getloaisanpham');
-Route::get('tim-kiem','Frontendcontroller@getloaisanpham')->name('tim-kiem');
-Route::post('/autocomplete/fetch', 'Frontendcontroller@fetch')->name('autocomplete.fetch');
-Route::get('Details/{id}/{alias}','Frontendcontroller@getdetails');
+		Route::get('loaisanpham/{id}/{alias}','Listproductcontroller@getloaisanpham');
+		Route::get('details/{id}','Listproductcontroller@view_details')->name('admin.transaction.index');
+		Route::get('tim-kiem','Frontendcontroller@getloaisanpham')->name('tim-kiem');
+		Route::post('/autocomplete/fetch', 'Frontendcontroller@fetch')->name('autocomplete.fetch');
+		Route::get('Details/{id}/{alias}','ProductDetailController@getdetails');
 
-Route::get('lien-he','Contactcontroller@getcontact');
-Route::post('lien-he','Contactcontroller@postcontact')->name('lien-he');
+		Route::get('lien-he','Contactcontroller@getcontact');
+		Route::post('lien-he','Contactcontroller@postcontact')->name('lien-he');
 
-Route::group(['prefix'=>'thanh-toan','middleware'=>'CheckLoginUser'],function(){
-	Route::get('/','Cartcontroller@thanhtoan');
-	Route::post('/','Cartcontroller@savethanhtoan');
-});
+		Route::group(['prefix'=>'thanh-toan','middleware'=>'CheckLoginUser'],function(){
+			Route::get('/','Cartcontroller@thanhtoan');
+			Route::post('/','Cartcontroller@savethanhtoan');
+		});
 
-Route::group(['prefix'=>'ajax','middleware'=>'CheckLoginUser'],function(){
-	Route::post('/danh-gia/{id}','Ratingcontroller@saverating');
-	Route::post('/view-product','Homecontroller@recentlyviews')->name('post.product.view');
+		Route::group(['prefix'=>'ajax','middleware'=>'CheckLoginUser'],function(){
+			Route::post('/danh-gia/{id}','RatingController@saverating');
+			Route::post('/view-product','Homecontroller@recentlyviews')->name('post.product.view');
+	    });
 });
+	
 
 Route::group(['namespace'=>'Auth'],function(){
 
@@ -81,8 +83,8 @@ Route::group(['namespace'=>'Backend'],function(){
 
 	Route::group(['prefix'=>'admin'],function(){
 
-			Route::get('home','Usercontroller@tongquang');
-			Route::get('kho','Usercontroller@kho')->name('kho');
+			Route::get('home','AdminWarehouseController@tongquang')->name('home');
+			Route::get('kho','AdminWarehouseController@kho')->name('kho');
 			Route::post('notify','Notifycontroller@notify')->name('notify');
 
 		Route::group(['prefix'=>'category'],function(){
@@ -106,13 +108,18 @@ Route::group(['namespace'=>'Backend'],function(){
 			Route::get('delimg/{id}','AdminProductController@getdelimg')->name('admin.product.delimg');
 	    });
 		Route::group(['prefix'=>'user'],function(){
-		Route::get('/','USercontroller@index')->name('admin.user.index');
-		Route::get('/pagination/fetch_data', 'USercontroller@fetch_data');
+			Route::get('/','AdminUserController@index')->name('admin.user.index');
+			Route::get('add','AdminUserController@getadd');
+			Route::post('add','AdminUserController@postadd');
+			Route::get('edit/{id}','AdminUserController@getedit');
+			Route::post('edit/{id}','AdminUserController@postedit');
+			Route::get('delete/{id}','AdminUserController@delete');
 		});
 		Route::group(['prefix'=>'transaction'],function(){
 		Route::get('/','Admintransactioncontroller@index')->name('admin.transaction.index');
 		Route::get('/view{id}','Admintransactioncontroller@vieworder')->name('admin.transaction.index');
 		Route::get('/active/{id}','Admintransactioncontroller@activetransaction');
+		Route::get('/delete/{id}','Admintransactioncontroller@delete');
 		});
 	});
 });
