@@ -46,6 +46,7 @@
         @yield('link')
         <!-- Modernizr js -->
         <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+        <link href="../toastr/toastr.min.css" rel="stylesheet">
     </head>
     <body>
     <!--[if lt IE 8]>
@@ -89,7 +90,7 @@
                                         <!-- Begin Currency Area -->
                                         @if(!Auth::check())
                                         <li>
-                                           <a href=""> <span class="currency-selector-wrapper">Đăng Ký</span></a>
+                                           <a href="{{asset('dang-ky')}}"> <span class="currency-selector-wrapper">Đăng Ký</span></a>
                                           
                                         </li>
                                         <!-- Currency Area End Here -->
@@ -278,7 +279,7 @@
                                 <div class="hb-menu">
                                     <nav>
                                         <ul>
-                                            <li><a href="about-us.html">Home</a></li>
+                                            <li><a href="{{asset('/')}}">Home</a></li>
                                     <?php
                                     $menu_1 = DB::table('cates')->where('parent_id',0)->get();
                                     ?>
@@ -299,7 +300,7 @@
                                         @endif
                                             </li>
                                     @endforeach        
-                                     <li><a href="contact.html">Contact</a></li>
+                                     <li><a href="{{asset('lien-he')}}">Contact</a></li>
                                         </ul>
                                     </nav>
                                 </div>
@@ -595,6 +596,7 @@
         <script src="js/scrollUp.min.js"></script>
         <!-- Main/Activator js -->
         <script src="js/main.js"></script>
+        <script type="text/javascript" src="../toastr/toastr.min.js"></script>
         @yield('script')
     </body>
 

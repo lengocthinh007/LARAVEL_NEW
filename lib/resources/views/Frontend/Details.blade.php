@@ -191,11 +191,79 @@
                         <div id="reviews" class="tab-pane" role="tabpanel">
                             <div class="product-reviews">
                                 <div class="product-details-comment-block">
-            
-
-                                    <div class="review-btn">
+            <!-- hiển thị đánh giá -->
+             <div class="component_rating_content" style="display: flex;align-items: center;position: relative;border-radius: 5px;border: 1px solid #dedede">
+                <div class="rating_item" style="width: 20%">
+                    <span class="fa fa-star" style="font-size: 100px;color: #fd9727;display: block;text-align: center;margin: 0 auto">
+                    </span>
+                    <b style="top: 50%;left: 10%;transform: translateX(-50%) translateY(-50%);position: absolute;color: white;font-size: 20px">{{$age}}
+                    </b>
+                </div>
+                    <div class="list_rating" style="width: 60%;padding: 20px">
+                        <?php
+                        $i=1;
+                        if($arrayrating==null)
+                        {
+                            $arrayrating=[1,2,3,4,5];
+                        }
+                        ?>
+                        @foreach($arrayrating as $key => $arrayrating)
+                        <?php
+                        $itemage=0;
+                        if($products->pro_total_rating !=0)
+                        $itemage = round(($arrayrating['total'] / $products->pro_total_rating)*100);
+                        ?>
+                <div class="item_rating" style="display: flex;align-items: center;">
+                        <div style="width: 10%">
+                                {{$i++}}<span class="fa fa-star"></span>
+                        </div>
+                        <div style="width: 70%;margin:0 20px">
+                             <span style="width: 100%;height: 8px;display: block;border: 1px solid #dedede;border-radius: 5px;background-color: #e9e9e9">
+                                <b style="width: {{$itemage}}%;background-color: #fd9727;display: block;border-radius: 5px;height: 100%">
+                                </b>
+                             </span>
+                        </div>
+                        <div style="width: 20%">
+                                <a href="">{{$arrayrating['total']}} Đánh giá ({{$itemage}}%)</a>
+                        </div>
+                        </div>
+                        @endforeach
+                    </div>
+                <div style="width: 20%">
+                         <div class="review-btn">
                                         <a class="review-links" href="#" data-toggle="modal" data-target="#mymodal">Đánh Giá Của Bạn!</a>
-                                    </div>
+                         </div>
+                </div>
+                
+            </div>
+           <!--  Hien danh gia -->
+
+         <!--   Comemnt -->
+          <div class="component_list_rating" style="margin-top: 30px">
+                @foreach($listrating as $item)
+                <div class="rating_item" style="margin-bottom: 20px">
+                    <div>
+                        <span>{{isset($item->user->name)?$item->user->name:''}}</span>
+                        <a href="" style="color:#2ba832"><i class="fas fa-check"></i>  Đã mua hàng tại web</a>
+                    </div>
+                    <p style="margin-bottom: 0px">
+                        <span>
+                             <div class="stars-outer">
+                                <div class="stars-inner" style="width: {{($item->number/5)*100}}%"></div>
+                            </div>
+                        </span>
+                         {{$item->content}}
+                         <div>
+                        <span><i class="fas fa-eye"></i>  {{$item->created_at}}</span>
+                    </div>
+                    </p>
+                    </div>
+                @endforeach
+                
+            </div>
+       <!--   comment -->
+
+                                   
                                     <!-- Begin Quick View | Modal Area -->
                                     <div class="modal fade modal-wrapper" id="mymodal" >
                                         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -378,12 +446,11 @@
                     content: content
                  },
                     success:function(data){
-                        if(data == "OK")
-                        {   
+
+                            console.log(data);
                             alert("Đánh giá thành công");
                             $('#comment_form')[0].reset();
                             
-                        }
                     },error:function(){ 
                         alert("error!!!!");
                     }

@@ -1,0 +1,1 @@
+<p>Cảm ơn bạn đã tin dùng các sản phẩm của chúng tôi. Click vào <a href="{{$route}}">Vào đây</a> để xác nhận tài khoản của bạn</p>

@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Model\Rating;
+use App\Model\Product;
+use Carbon\Carbon;
 
 
 class AdminRatingController extends Controller
@@ -11,7 +14,7 @@ class AdminRatingController extends Controller
      public function saverating(Request $request,$id){
       	if($request->ajax())
       	{
-      		Rating::insert([
+      		  Rating::insert([
       			'product_id' => $id,
       			'number' => $request->number,
       			'content' => $request->content,
@@ -19,7 +22,7 @@ class AdminRatingController extends Controller
       			'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
       		]);
-      		$products = products::find($id);
+      		$products = Product::find($id);
       		$products->pro_total_number += $request->number; 
       		$products->pro_total_rating += 1; 
       		$products->save();

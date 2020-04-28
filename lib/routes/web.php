@@ -18,26 +18,27 @@ Route::group(['namespace'=>'Frontend'],function(){
 		Route::post('/autocomplete/fetch', 'Frontendcontroller@fetch')->name('autocomplete.fetch');
 		Route::get('Details/{id}/{alias}','ProductDetailController@getdetails');
 
-		Route::get('lien-he','Contactcontroller@getcontact');
-		Route::post('lien-he','Contactcontroller@postcontact')->name('lien-he');
-
 		Route::group(['prefix'=>'thanh-toan','middleware'=>'CheckLoginUser'],function(){
 			Route::get('/','Cartcontroller@thanhtoan');
 			Route::post('/','Cartcontroller@savethanhtoan');
 		});
 
-		Route::group(['prefix'=>'ajax','middleware'=>'CheckLoginUser'],function(){
+		Route::group(['prefix'=>'ajax'],function(){
 			Route::post('/danh-gia/{id}','RatingController@saverating');
 			Route::post('/view-product','Homecontroller@recentlyviews')->name('post.product.view');
 	    });
 });
 	
+Route::get('lien-he','Backend\AdminContactController@getcontact');
+Route::post('lien-he','Backend\AdminContactController@postcontact')->name('lien-he');
 
 Route::group(['namespace'=>'Auth'],function(){
 
 	Route::group(['prefix'=>'Admin'],function(){
-		Route::get('/login','Logincontroller@getLoginadmin');
-		Route::post('/login','Logincontroller@postLoginadmin');
+		Route::group(['prefix'=>'login','middleware'=>'Checklogoutadmin'],function(){
+			Route::get('/','Logincontroller@getLoginadmin');
+			Route::post('/','Logincontroller@postLoginadmin');
+		});
 		Route::get('/logout','Logincontroller@logoutadmin');
 		});
 
@@ -46,8 +47,10 @@ Route::group(['namespace'=>'Auth'],function(){
 
 		Route::get('/xac-nhan-tai-khoan','Registercontroller@verifyaccount')->name('verify.account');
 
-		Route::get('dang-nhap','Logincontroller@getLogin')->name('dang-nhap');;
-		Route::post('dang-nhap','Logincontroller@postLogin');
+		Route::group(['prefix'=>'dang-nhap','middleware'=>'Checklogoutuser'],function(){
+			Route::get('/','Logincontroller@getLogin')->name('dang-nhap');
+			Route::post('/','Logincontroller@postLogin');
+			});
 
 		Route::get('dang-xuat','Logincontroller@logout');
 
@@ -66,7 +69,7 @@ Route::group(['prefix'=>'cart'],function(){
 	Route::post('show','Cartcontroller@postcomplete');
 });
 
-Route::group(['namespace'=>'User'],function(){
+Route::group(['namespace'=>'User','middleware'=>'Checkloginuser'],function(){
 
 	Route::group(['prefix'=>'User'],function(){
 		Route::get('/home','Usercontroller@home')->name('User.home');
@@ -79,7 +82,7 @@ Route::group(['namespace'=>'User'],function(){
 		});
 });
 
-Route::group(['namespace'=>'Backend'],function(){
+Route::group(['namespace'=>'Backend','middleware'=>'Checkloginadmin'],function(){
 
 	Route::group(['prefix'=>'admin'],function(){
 

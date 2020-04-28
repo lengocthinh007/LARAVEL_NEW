@@ -13,7 +13,7 @@ class passwordrequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,10 +21,16 @@ class passwordrequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+   public function rules()
     {
         return [
-            //
+             
+                     'Password_confirm'=>'same:Password'
+        ];
+    }
+     public function messages(){
+        return[
+                    'Password_confirm.same'=>'Mật khẩu xác nhận không đúng'
         ];
     }
 }

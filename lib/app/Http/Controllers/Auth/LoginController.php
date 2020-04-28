@@ -27,7 +27,7 @@ class LoginController extends Controller
     }
         public function postLogin(Request $request){
         $arr = ['email'=>$request->email,'password'=>$request->password];
-        if($request->remember='Remember Me'){
+        if($request->remember='remember_me'){
             $remember=true;
         }
         else{
@@ -36,6 +36,7 @@ class LoginController extends Controller
         if(Auth::attempt($arr,$remember)){
             return redirect()->intended('/');
         }else{
+            
             return back()->withInput()->with(['level'=>'danger','message'=>'Tài khoản hoặc mật khẩu không đúng']);
         }
     }
