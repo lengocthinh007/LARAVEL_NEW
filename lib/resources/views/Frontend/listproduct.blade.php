@@ -142,7 +142,7 @@
                                                             </div>
                                                             <div class="add-actions">
                                                                 <ul class="add-actions-link">
-                                                                    <li class="add-cart active"><a href="shopping-cart.html">Chọn Mua</a></li>
+                                                                    <li class="add-cart active"><a href="{{asset('cart/add/'.$item->id)}}">Chọn Mua</a></li>
                                                                     <li><a href="{{asset('details/'.$item['id'])}}" data-key="{{$item['id']}}" class="quick-view-btn js_review"><i class="fa fa-eye"></i></a></li>
                                                                     
                                                                 </ul>
@@ -307,58 +307,8 @@
             console.log(result);
           $("#md_content").append(result);
           // Hieu ung slide
-                          $('.product-details-images').each(function(){
-                     var $this = $(this);
-                     var $thumb = $this.siblings('.product-details-thumbs, .tab-style-left');
-                     $this.slick({
-                        arrows: false,
-                        slidesToShow: 1,
-                        slidesToScroll: 1,
-                        autoplay: false,
-                        autoplaySpeed: 5000,
-                        dots: false,
-                        infinite: true,
-                        centerMode: false,
-                        centerPadding: 0,
-                        asNavFor: $thumb,
-                    });
-                 });
-                 $('.product-details-thumbs').each(function(){
-                     var $this = $(this);
-                     var $details = $this.siblings('.product-details-images');
-                     $this.slick({
-                        slidesToShow: 4,
-                        slidesToScroll: 1,
-                        autoplay: false,
-                        autoplaySpeed: 5000,
-                        dots: false,
-                        infinite: true,
-                        focusOnSelect: true,
-                        centerMode: true,
-                        centerPadding: 0,
-                        prevArrow: '<span class="slick-prev"><i class="fa fa-angle-left"></i></span>',
-                        nextArrow: '<span class="slick-next"><i class="fa fa-angle-right"></i></span>',
-                        asNavFor: $details,
-                    });
-                 });
-                 $('.tab-style-left, .tab-style-right').each(function(){
-                     var $this = $(this);
-                     var $details = $this.siblings('.product-details-images');
-                     $this.slick({
-                        slidesToShow: 3,
-                        slidesToScroll: 1,
-                        autoplay: false,
-                        autoplaySpeed: 5000,
-                        dots: false,
-                        infinite: true,
-                        focusOnSelect: true,
-                        vertical: true,
-                        centerPadding: 0,
-                        prevArrow: '<span class="slick-prev"><i class="fa fa-angle-down"></i></span>',
-                        nextArrow: '<span class="slick-next"><i class="fa fa-angle-up"></i></span>',
-                        asNavFor: $details,
-                    });
-                 });
+             Detail();   
+             qty();         
           // Hieu ung slide
         }
       });

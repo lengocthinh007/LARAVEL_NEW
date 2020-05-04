@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Model\Product;
+use App\Model\Category;
 use App\Model\Rating;
 use App\Model\Product_img;
 use DB;
@@ -15,6 +16,7 @@ class ProductDetailController extends Controller
     		'pro_active', Product::STATUS_PUBLIC
     	)->find($id);
     	$imgdetails =  Product_img::select('id','image')->where('product_id',$id)->get();
+        $cate = Category::select('name')->where('id',$products->cate_id)->first();
     	$pro_care = Product::where(
     		'pro_active', Product::STATUS_PUBLIC,
     	)->where('cate_id',$products->cate_id)->where('id','<>',$id)->get();
@@ -51,6 +53,7 @@ class ProductDetailController extends Controller
     		'products'=>$products,
     		'imgdetails'=>$imgdetails,
     		'pro_care'=>$pro_care,
+            'cate'=>$cate,
             'arrayrating'=>$arrayrating,
             'listrating' => $listrating,
     	];

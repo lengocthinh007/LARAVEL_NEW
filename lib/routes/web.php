@@ -18,9 +18,9 @@ Route::group(['namespace'=>'Frontend'],function(){
 		Route::post('/autocomplete/fetch', 'Frontendcontroller@fetch')->name('autocomplete.fetch');
 		Route::get('Details/{id}/{alias}','ProductDetailController@getdetails');
 
-		Route::group(['prefix'=>'thanh-toan','middleware'=>'CheckLoginUser'],function(){
-			Route::get('/','Cartcontroller@thanhtoan');
-			Route::post('/','Cartcontroller@savethanhtoan');
+		Route::group(['prefix'=>'thanh-toan','middleware'=>'Checkloginuser'],function(){
+			Route::get('/','ShoppingCartController@thanhtoan');
+			Route::post('/','ShoppingCartController@savethanhtoan');
 		});
 
 		Route::group(['prefix'=>'ajax'],function(){
@@ -62,11 +62,11 @@ Route::group(['namespace'=>'Auth'],function(){
 });
 
 Route::group(['prefix'=>'cart'],function(){
-	Route::get('add/{id}','Cartcontroller@getcart');
-	Route::get('show','Cartcontroller@getshow');
-	Route::get('delete/{id}','Cartcontroller@getdelete');
-	Route::get('update','Cartcontroller@getupdate');
-	Route::post('show','Cartcontroller@postcomplete');
+	Route::get('add/{id}','Frontend\ShoppingCartController@getcart');
+	Route::get('show','Frontend\ShoppingCartController@getshow');
+	Route::get('delete/{id}','Frontend\ShoppingCartController@getdelete');
+	Route::get('update','Frontend\ShoppingCartController@getupdate');
+	Route::post('show','Frontend\ShoppingCartController@postcomplete');
 });
 
 Route::group(['namespace'=>'User','middleware'=>'Checkloginuser'],function(){

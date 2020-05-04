@@ -113,7 +113,7 @@
                             <div class="product-details-view-content sp-normal-content pt-60">
                                 <div class="product-info">
                                     <h2>{{$products->name}}</h2>
-                                    <span class="product-details-ref">Reference: demo_15</span>
+                                    <span class="product-details-ref">Thương hiệu: {{$cate->name}}</span>
                                     <div class="rating-box pt-20">
                     <?php
                      $age = 0;
@@ -126,6 +126,7 @@
                     ?>
                    <div class="stars-outer">
                         <div class="stars-inner" style="width: {{$star}}%"></div>
+                        [ {{$age}} điểm / {{$products->pro_total_rating}} lượt]
                    </div>
                                     </div>
                                     <div class="price-box pt-20">
@@ -138,11 +139,11 @@
                                         </p>
                                     </div>
                                     <div class="single-add-to-cart">
-                                        <form action="#" class="cart-quantity">
+                                        <form action="{{asset('cart/add/'.$products->id)}}" class="cart-quantity">
                                             <div class="quantity">
                                                 <label>Số lượng</label>
                                                 <div class="cart-plus-minus">
-                                                    <input class="cart-plus-minus-box" value="1" type="text">
+                                                    <input name="qty" class="cart-plus-minus-box" value="1" type="text">
                                                     <div class="dec qtybutton"><i class="fa fa-angle-down"></i></div>
                                                     <div class="inc qtybutton"><i class="fa fa-angle-up"></i></div>
                                                 </div>
@@ -150,16 +151,7 @@
                                             <button class="add-to-cart" type="submit">Chọn Mua</button>
                                         </form>
                                     </div>
-                                    <div class="product-additional-info">
-                                        <div class="product-social-sharing">
-                                            <ul>
-                                                <li class="facebook"><a href="#"><i class="fa fa-facebook"></i>Facebook</a></li>
-                                                <li class="twitter"><a href="#"><i class="fa fa-twitter"></i>Twitter</a></li>
-                                                <li class="google-plus"><a href="#"><i class="fa fa-google-plus"></i>Google +</a></li>
-                                                <li class="instagram"><a href="#"><i class="fa fa-instagram"></i>Instagram</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
+                                  
                                 </div>
                             </div>
                         </div> 
@@ -230,16 +222,22 @@
                         @endforeach
                     </div>
                 <div style="width: 20%">
+                      @if(Auth::check())
                          <div class="review-btn">
                                         <a class="review-links" href="#" data-toggle="modal" data-target="#mymodal">Đánh Giá Của Bạn!</a>
                          </div>
+                       @else
+                       <div class="review-btn">
+                                        <a class="review-links" href="{{asset('dang-nhap')}}">Đăng nhập để đánh giá</a>
+                         </div>
+                       @endif
                 </div>
                 
             </div>
            <!--  Hien danh gia -->
 
          <!--   Comemnt -->
-          <div class="component_list_rating" style="margin-top: 30px">
+          <div id="comment" class="component_list_rating" style="margin-top: 30px">
                 @foreach($listrating as $item)
                 <div class="rating_item" style="margin-bottom: 20px">
                     <div>
@@ -447,10 +445,22 @@
                  },
                     success:function(data){
 
-                            console.log(data);
-                            alert("Đánh giá thành công");
                             $('#comment_form')[0].reset();
-                            
+                            $('#mymodal').modal('hide');
+                              var html = '';
+                       if(data!='')
+                         {
+                           $.each (JSON.parse(data), function (key, item){
+                            html +=  '<div class="rating_item" style="margin-bottom: 20px">';
+                            html+= '<div><span>'+item['name']+'</span>';
+                            html+=' <a href="" style="color:#2ba832"><i class="fas fa-check"></i>  Đã mua hàng tại web</a>';
+                            html+='</div><p style="margin-bottom: 0px"><span><div class="stars-outer">';
+                            html+=' <div class="stars-inner" style="width:'+(item['number']/5)*100+'%"></div></div>';
+                            html+=' </span>'+item['content']+'<div><span><i class="fas fa-eye"></i> '+item['created_at'].replace( /(\d{2})-(\d{2})-(\d{4})/, "$2/$1/$3")+'</span></div></p></div>';
+                            });
+
+                         }
+                        $('#comment').prepend(html);
                     },error:function(){ 
                         alert("error!!!!");
                     }
@@ -458,8 +468,9 @@
             }
             else
             {
-                alert('Chưa nhập nội dung');
+                alert('Chưa nhập nội dung hoặc đánh giá');
             }
         });
 </script>
+@include('errors.front')
 @stop

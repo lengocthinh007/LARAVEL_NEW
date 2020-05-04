@@ -411,6 +411,7 @@ Note: main.js, All Default Scripting Languages For This Theme Included In This F
  /*----------------------------------------*/
  /* 21. Modal Menu Active
  /*----------------------------------------*/ 
+ window.Detail = function(){ 
  $('.product-details-images').each(function(){
      var $this = $(this);
      var $thumb = $this.siblings('.product-details-thumbs, .tab-style-left');
@@ -463,9 +464,12 @@ Note: main.js, All Default Scripting Languages For This Theme Included In This F
         asNavFor: $details,
     });
  });
+};
+Detail();
 /*----------------------------------------*/
 /* 22. Cart Plus Minus Button
 /*----------------------------------------*/
+   window.qty = function(){
  $(".cart-plus-minus").append('<div class="dec qtybutton"><i class="fa fa-angle-down"></i></div><div class="inc qtybutton"><i class="fa fa-angle-up"></i></div>');
  $(".qtybutton").on("click", function() {
     var $button = $(this);
@@ -474,14 +478,16 @@ Note: main.js, All Default Scripting Languages For This Theme Included In This F
        var newVal = parseFloat(oldValue) + 1;
     } else {
         // Don't allow decrementing below zero
-       if (oldValue > 0) {
+       if (oldValue > 1) {
          var newVal = parseFloat(oldValue) - 1;
          } else {
-         newVal = 0;
+         newVal = 1;
        }
        }
     $button.parent().find("input").val(newVal);
    });
+};
+qty();
 /*----------------------------------------*/
 /* 23. Single Prduct Carousel Activision
 /*----------------------------------------*/

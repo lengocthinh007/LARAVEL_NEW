@@ -64,7 +64,7 @@
                             <div class="col-lg-3 col-md-4">
                                 <div class="header-top-left">
                                     <ul class="phone-wrap">
-                                        <li><span>Telephone Enquiry:</span><a href="#">(+123) 123 321 345</a></li>
+                                        <li><span>Telephone :</span><a href="#">(+123) 123 321 345</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -206,56 +206,41 @@
                                 <div class="header-middle-right">
                                     <ul class="hm-menu">
                                         <!-- Begin Header Middle Wishlist Area -->
-                                        <li class="hm-wishlist">
-                                            <a href="wishlist.html">
-                                                <span class="cart-item-count wishlist-item-count">0</span>
-                                                <i class="fa fa-heart-o"></i>
-                                            </a>
-                                        </li>
+                                       
                                         <!-- Header Middle Wishlist Area End Here -->
                                         <!-- Begin Header Mini Cart Area -->
                                         <li class="hm-minicart">
                                             <div class="hm-minicart-trigger">
                                                 <span class="item-icon"></span>
-                                                <span class="item-text">£80.00
-                                                    <span class="cart-item-count">2</span>
+                                                <span style="font-weight: bold;" class="item-text">{{Cart::subtotal(0,'.','.')}} đ
+                                                    <span class="cart-item-count">{{Cart::count()}}</span>
                                                 </span>
                                             </div>
                                             <span></span>
                                             <div class="minicart">
                                                 <ul class="minicart-product-list">
+                                                    @foreach(Cart::content() as $item)
                                                     <li>
-                                                        <a href="single-product.html" class="minicart-product-image">
-                                                            <img src="images/product/small-size/5.jpg" alt="cart products">
+                                                        <a href="{{asset('Details/'.$item->id.'/'.$item->options->alias)}}" class="minicart-product-image">
+                                                            <img src="{{asset('public/HinhDetails/small/'.$item->options->img)}}" alt="cart products">
                                                         </a>
                                                         <div class="minicart-product-details">
-                                                            <h6><a href="single-product.html">Aenean eu tristique</a></h6>
-                                                            <span>£40 x 1</span>
+                                                            <h6><a href="{{asset('Details/'.$item->id.'/'.$item->options->alias)}}">{{$item->name}}</a></h6>
+                                                            <span>{{number_format($item->price,0,',','.')}} đ x {{$item->qty}}</span>
                                                         </div>
-                                                        <button class="close" title="Remove">
+                                                        <a href="{{asset('cart/delete/'.$item->rowId)}}" class="close" title="Remove">
                                                             <i class="fa fa-close"></i>
-                                                        </button>
-                                                    </li>
-                                                    <li>
-                                                        <a href="single-product.html" class="minicart-product-image">
-                                                            <img src="images/product/small-size/6.jpg" alt="cart products">
                                                         </a>
-                                                        <div class="minicart-product-details">
-                                                            <h6><a href="single-product.html">Aenean eu tristique</a></h6>
-                                                            <span>£40 x 1</span>
-                                                        </div>
-                                                        <button class="close" title="Remove">
-                                                            <i class="fa fa-close"></i>
-                                                        </button>
                                                     </li>
+                                                     @endforeach
                                                 </ul>
-                                                <p class="minicart-total">SUBTOTAL: <span>£80.00</span></p>
+                                                <p class="minicart-total">Tổng Tiền: <span>{{Cart::subtotal(0,'.','.')}} đ</span></p>
                                                 <div class="minicart-button">
-                                                    <a href="shopping-cart.html" class="li-button li-button-fullwidth li-button-dark">
-                                                        <span>View Full Cart</span>
+                                                    <a href="{{asset('cart/show')}}" class="li-button li-button-fullwidth li-button-dark">
+                                                        <span>Xem Giỏ Hàng</span>
                                                     </a>
                                                     <a href="checkout.html" class="li-button li-button-fullwidth">
-                                                        <span>Checkout</span>
+                                                        <span>Thanh Toán</span>
                                                     </a>
                                                 </div>
                                             </div>
