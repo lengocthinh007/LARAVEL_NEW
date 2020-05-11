@@ -40,11 +40,13 @@
                 <thead>
                   <tr>
                       <th>ID</th>
-                      <th width="30%">Tên khác hàng</th>
+                      <th>Tên khác hàng</th>
+                      <th>Địa Chỉ</th>
                       <th>Số điện thoại</th>
                       <th>Tổng tiền</th>
+                      <th>PT Thanh Toán</th>
                       <th>Trạng thái</th>
-                      <th>Tùy chọn</th>
+                      <th>Thời Gian</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -56,10 +58,16 @@
                   <td>{!! $item['address'] !!}</td>
                   <td>{!! $item['phone'] !!}</td>
                   <td>{!! $item['total'] !!}</td>
-                  <td>@if($item['status'] ==1)
-                   <a href="{{asset('admin/transaction/')}}" class="badge badge-primary"> Đã xử lý</a>
+                   <td>@if($item['pay_type'] ==1)
+                   <a href="#" class="label label-primary">Online</a>
                     @else
-                    <a href="{{asset('admin/transaction/active/'.$item['id'])}}" class="badge badge-warning">Chưa xử lý</a>
+                    <a href="#" class="label label-info">Trực Tiếp</a>
+                    @endif
+                  </td>
+                  <td>@if($item['status'] ==1)
+                   <a href="#" class="label label-primary"> Đã xử lý</a>
+                    @else
+                    <a href="#" class="label label-info">Chưa xử lý</a>
                     @endif
                   </td>
                    <td>{{$item['created_at']->format('d-m-Y')}}</td>

@@ -55,9 +55,11 @@
                                                 <td class="li-product-thumbnail"><a href="{{asset('Details/'.$item->id.'/'.$item->options->alias)}}"><img src="{{asset('public/HinhDetails/small/'.$item->options->img)}}" alt="Li's Product Image"></a></td>
                                                 <td class="li-product-name"><a style="color: black" href="{{asset('Details/'.$item->id.'/'.$item->options->alias)}}">{{$item->name}}</a></td>
                                                 <td class="li-product-price"><span style="font-weight: normal;" class="amount">{{number_format($item->price,0,',','.')}} đ</span></td>
+                                                <?php
+                                                $qty = DB::table('products')->where('id', $item->id)->value('pro_number');
+                                                ?>
                                                 <td class="quantity">
-                                                  
-                                                        <input style="width: 30%;margin-left: 35%" class="form-control" type="number" value="{{$item->qty}}" onchange="updateCart(this.value,'{{$item->rowId}}')">
+                                                        <input max="{{$qty}}" style="width: 30%;margin-left: 35%" class="form-control" type="number" value="{{$item->qty}}" onchange="updateCart(this.value,'{{$item->rowId}}')">
                                                    
                                                 </td>
                                                 <td class="product-subtotal"><span style="font-weight: normal;" class="amount">{{number_format($item->price*$item->qty,0,',','.')}} đ</span></td>

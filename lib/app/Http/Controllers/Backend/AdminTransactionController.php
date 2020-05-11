@@ -40,13 +40,15 @@ class AdminTransactionController extends Controller
                 $product->save();
             }
         }
-        DB::table('users')->where('id',$Transaction->user_id)->increment('total_pay');
-        $Transaction->status = Transaction::STATUS_DONE;
-        $Transaction->save();
-         $notification = array(
-                'message' => 'Xử Lí Thành Công!',
-                'alert-type' => 'success'
-            );
+     
+            DB::table('users')->where('id',$Transaction->user_id)->increment('total_pay');
+            $Transaction->status = Transaction::STATUS_DONE;
+            $Transaction->save();
+             $notification = array(
+                    'message' => 'Xử Lí Thành Công!',
+                    'alert-type' => 'success'
+                );
+       
         return redirect()->back()->with($notification);
     }
 

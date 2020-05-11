@@ -315,4 +315,5 @@
     }); 
   });
 </script> 
+@include('errors.front')
 @stop

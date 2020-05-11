@@ -28,6 +28,13 @@ Route::group(['namespace'=>'Frontend'],function(){
 			Route::post('/view-product','Homecontroller@recentlyviews')->name('post.product.view');
 	    });
 });
+
+Route::group(['namespace'=>'VNPAY'],function(){
+	Route::group(['prefix'=>'VNPAY'],function(){
+			Route::get('/create','VNPAYController@create');
+			Route::get('/return','VNPAYController@return');
+	    });
+});
 	
 Route::get('lien-he','Backend\AdminContactController@getcontact');
 Route::post('lien-he','Backend\AdminContactController@postcontact')->name('lien-he');
@@ -67,6 +74,7 @@ Route::group(['prefix'=>'cart'],function(){
 	Route::get('delete/{id}','Frontend\ShoppingCartController@getdelete');
 	Route::get('update','Frontend\ShoppingCartController@getupdate');
 	Route::post('show','Frontend\ShoppingCartController@postcomplete');
+	Route::get('complete','Frontend\ShoppingCartController@getcomplete');
 });
 
 Route::group(['namespace'=>'User','middleware'=>'Checkloginuser'],function(){

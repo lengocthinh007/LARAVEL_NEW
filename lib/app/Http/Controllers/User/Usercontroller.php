@@ -15,7 +15,7 @@ class Usercontroller extends Controller
       {
       	$Transaction = Transaction::where('user_id',get_data_user('web'));
       	$listtransaction=$Transaction;
-      	$Transaction=$Transaction->addselect('id','total','address','phone','created_at','status')->get();
+      	$Transaction=$Transaction->addselect('id','pay_type','total','address','phone','created_at','status')->get();
       	$totaltransaction =$listtransaction->select('id')->count();
       	$totaltransactiondone =$listtransaction->where('status',Transaction::STATUS_DONE)->select('id')->count();
 

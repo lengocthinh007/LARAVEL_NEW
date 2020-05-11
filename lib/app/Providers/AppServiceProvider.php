@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
+use App\Model\Category;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -24,6 +25,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+          $data['caten'] = Category::select('id','name','parent_id')->get()->toArray();
+          view()->share($data);
          Schema::defaultStringLength(191);
     }
 }

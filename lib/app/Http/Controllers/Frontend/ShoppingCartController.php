@@ -9,13 +9,14 @@ use Cart;
 use App\Model\Transaction;
 use App\Model\Order;
 use Carbon\Carbon;
+use DB;
 
 class ShoppingCartController extends Controller
 {
 	
      public function thanhtoan()
       {
-        $data['total'] = Cart::total();
+        $data['total'] = Cart::total(0,'.','.');
         $data['items'] = Cart::content();
         return view('Frontend.thanhtoan',$data);
       }
@@ -27,6 +28,7 @@ class ShoppingCartController extends Controller
           'user_id' => get_data_user('web'),
           'total' => (int)$totalMoney,
           'note' => $request->note,
+          'pay_type' => $request->pay_type,
           'address' => $request->address,
           'phone' => $request->phone_number,
           'created_at' => Carbon::now(),
@@ -46,8 +48,17 @@ class ShoppingCartController extends Controller
                 ]);
               }
           }
-        Cart::destroy();
-        return redirect('/');
+        if($request->pay_type==2)
+            {
+              Cart::destroy();
+              return redirect('cart/complete');
+            }
+            else
+            {
+              $data['id'] = $TransactionID;
+              $data['total'] = (int)$totalMoney;
+              return view('VNPAY.Home',$data);
+            }
       }
 
      public function getcart(Request $request,$id) // Add Cart
@@ -58,16 +69,16 @@ class ShoppingCartController extends Controller
         {
           $price=$price * (100 - $product->pro_sale)/100;
         }
-        $num =  Order::select('qty')
-			    ->join('transaction', 'transaction.id', '=', 'order.transaction_id')
-			    ->where('product_id', $id)
-			    ->where('transaction.status',0)
-			    ->get();
-	    $dem=0;
-			    foreach ($num as $value) {
-			    	$dem = $dem + $value;
-			    }
-        if($request->qty > ($product->pro_number-$dem))
+     
+        $dem =  DB::table('order')
+            ->join('transaction', 'order.transaction_id', '=', 'transaction.id')
+            ->where('product_id',$id)
+            ->where('status',0)
+            ->sum('qty');
+
+        $qty = $request->qty ? $request->qty : 1;
+
+        if($qty > ($product->pro_number - $dem ))
         {
         	$notification = array(
                 'message' => 'Sản Phẩm Tạm Hết Hàng!',
@@ -117,4 +128,10 @@ class ShoppingCartController extends Controller
        {
        	Cart::update($request->rowId,$request->qty);
        }
+
+      public function getcomplete()
+         {
+         	return view('Frontend.complete');
+         }
+
 }
