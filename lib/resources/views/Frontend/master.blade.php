@@ -80,7 +80,7 @@
                                             <div class="setting ht-setting">
                                                 <ul class="ht-setting-list">
                                                     <li><a href="{{asset('User/home')}}">My Account</a></li>
-                                                    <li><a href="checkout.html">Checkout</a></li>
+                                                    <li><a href="{{asset('cart/show')}}">Checkout</a></li>
                                                     <li><a href="{{asset('dang-xuat')}}">Thoát</a></li>
                                                 </ul>
                                             </div>
@@ -117,7 +117,7 @@
                             <div class="col-lg-3">
                                 <div class="logo pb-sm-30 pb-xs-30">
                                     <a href="index.html">
-                                        <img src="images/menu/logo/1.jpg" alt="">
+                                        <img width="190px" height="60px" src="images/menu/logo/1.PNG" alt="">
                                     </a>
                                 </div>
                             </div>
@@ -125,12 +125,12 @@
                             <!-- Begin Header Middle Right Area -->
                             <div class="col-lg-9 pl-0 ml-sm-15 ml-xs-15">
                                 <!-- Begin Header Middle Searchbox Area -->
-                                <form action="#" class="hm-searchbox">
+                                <form action="{{asset('tim-kiem')}}" method="get" class="hm-searchbox">
                                     <select name="cate" class="nice-select select-search-category">
-                                        <option value="">All</option>                         
+                                        <option value="">All</option>                      
                                        <?php cate_parent($caten,0,"--",\Request::get('cate')); ?>
                                     </select>
-                                    <input name="name" type="text" placeholder="Enter your search key ..." value="{{\Request::get('name')}}">
+                                    <input name="k" type="text" placeholder="Enter your search key ..." value="{{\Request::get('k')}}">
                                     <button class="li-btn" type="submit"><i class="fa fa-search"></i></button>
                                 </form>
                                 <!-- Header Middle Searchbox Area End Here -->
@@ -171,7 +171,7 @@
                                                     <a href="{{asset('cart/show')}}" class="li-button li-button-fullwidth li-button-dark">
                                                         <span>Xem Giỏ Hàng</span>
                                                     </a>
-                                                    <a href="checkout.html" class="li-button li-button-fullwidth">
+                                                    <a href="{{asset('thanh-toan')}}" class="li-button li-button-fullwidth">
                                                         <span>Thanh Toán</span>
                                                     </a>
                                                 </div>
@@ -196,7 +196,7 @@
                                 <div class="hb-menu">
                                     <nav>
                                         <ul>
-                                            <li><a href="{{asset('/')}}">Home</a></li>
+                                            <li><a href="{{asset('/')}}">Trang Chủ</a></li>
                                     <?php
                                     $menu_1 = DB::table('cates')->where('parent_id',0)->get();
                                     ?>
@@ -217,7 +217,7 @@
                                         @endif
                                             </li>
                                     @endforeach        
-                                     <li><a href="{{asset('lien-he')}}">Contact</a></li>
+                                     <li><a href="{{asset('lien-he')}}">Liên Hệ</a></li>
                                         </ul>
                                     </nav>
                                 </div>
@@ -245,68 +245,7 @@
             <!-- Begin Footer Area -->
             <div class="footer">
                 <!-- Begin Footer Static Top Area -->
-                <div class="footer-static-top">
-                    <div class="container">
-                        <!-- Begin Footer Shipping Area -->
-                        <div class="footer-shipping pt-60 pb-25">
-                            <div class="row">
-                                <!-- Begin Li's Shipping Inner Box Area -->
-                                <div class="col-lg-3 col-md-6 col-sm-6 pb-sm-55 pb-xs-55">
-                                    <div class="li-shipping-inner-box">
-                                        <div class="shipping-icon">
-                                            <img src="images/shipping-icon/1.png" alt="Shipping Icon">
-                                        </div>
-                                        <div class="shipping-text">
-                                            <h2>Free Delivery</h2>
-                                            <p>And free returns. See checkout for delivery dates.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Li's Shipping Inner Box Area End Here -->
-                                <!-- Begin Li's Shipping Inner Box Area -->
-                                <div class="col-lg-3 col-md-6 col-sm-6 pb-sm-55 pb-xs-55">
-                                    <div class="li-shipping-inner-box">
-                                        <div class="shipping-icon">
-                                            <img src="images/shipping-icon/2.png" alt="Shipping Icon">
-                                        </div>
-                                        <div class="shipping-text">
-                                            <h2>Safe Payment</h2>
-                                            <p>Pay with the world's most popular and secure payment methods.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Li's Shipping Inner Box Area End Here -->
-                                <!-- Begin Li's Shipping Inner Box Area -->
-                                <div class="col-lg-3 col-md-6 col-sm-6 pb-xs-30">
-                                    <div class="li-shipping-inner-box">
-                                        <div class="shipping-icon">
-                                            <img src="images/shipping-icon/3.png" alt="Shipping Icon">
-                                        </div>
-                                        <div class="shipping-text">
-                                            <h2>Shop with Confidence</h2>
-                                            <p>Our Buyer Protection covers your purchasefrom click to delivery.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Li's Shipping Inner Box Area End Here -->
-                                <!-- Begin Li's Shipping Inner Box Area -->
-                                <div class="col-lg-3 col-md-6 col-sm-6 pb-xs-30">
-                                    <div class="li-shipping-inner-box">
-                                        <div class="shipping-icon">
-                                            <img src="images/shipping-icon/4.png" alt="Shipping Icon">
-                                        </div>
-                                        <div class="shipping-text">
-                                            <h2>24/7 Help Center</h2>
-                                            <p>Have a question? Call a Specialist or chat online.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Li's Shipping Inner Box Area End Here -->
-                            </div>
-                        </div>
-                        <!-- Footer Shipping Area End Here -->
-                    </div>
-                </div>
+               
                 <!-- Footer Static Top Area End Here -->
                 <!-- Begin Footer Static Middle Area -->
                 <div class="footer-static-middle">
@@ -316,7 +255,7 @@
                                 <!-- Begin Footer Logo Area -->
                                 <div class="col-lg-4 col-md-6">
                                     <div class="footer-logo">
-                                        <img src="images/menu/logo/1.jpg" alt="Footer Logo">
+                                        <img width="200px" height="70px" src="images/menu/logo/1.PNG" alt="Footer Logo">
                                         <p class="info">
                                             We are a team of designers and developers that create high quality HTML Template & Woocommerce, Shopify Theme.
                                         </p>
@@ -421,51 +360,7 @@
                 </div>
                 <!-- Footer Static Middle Area End Here -->
                 <!-- Begin Footer Static Bottom Area -->
-                <div class="footer-static-bottom pt-55 pb-55">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <!-- Begin Footer Links Area -->
-                                <div class="footer-links">
-                                    <ul>
-                                        <li><a href="#">Online Shopping</a></li>
-                                        <li><a href="#">Promotions</a></li>
-                                        <li><a href="#">My Orders</a></li>
-                                        <li><a href="#">Help</a></li>
-                                        <li><a href="#">Customer Service</a></li>
-                                        <li><a href="#">Support</a></li>
-                                        <li><a href="#">Most Populars</a></li>
-                                        <li><a href="#">New Arrivals</a></li>
-                                        <li><a href="#">Special Products</a></li>
-                                        <li><a href="#">Manufacturers</a></li>
-                                        <li><a href="#">Our Stores</a></li>
-                                        <li><a href="#">Shipping</a></li>
-                                        <li><a href="#">Payments</a></li>
-                                        <li><a href="#">Warantee</a></li>
-                                        <li><a href="#">Refunds</a></li>
-                                        <li><a href="#">Checkout</a></li>
-                                        <li><a href="#">Discount</a></li>
-                                        <li><a href="#">Refunds</a></li>
-                                        <li><a href="#">Policy Shipping</a></li>
-                                    </ul>
-                                </div>
-                                <!-- Footer Links Area End Here -->
-                                <!-- Begin Footer Payment Area -->
-                                <div class="copyright text-center">
-                                    <a href="#">
-                                        <img src="images/payment/1.png" alt="">
-                                    </a>
-                                </div>
-                                <!-- Footer Payment Area End Here -->
-                                <!-- Begin Copyright Area -->
-                                <div class="copyright text-center pt-25">
-                                    <span><a target="_blank" href="https://www.templateshub.net">Templates Hub</a></span>
-                                </div>
-                                <!-- Copyright Area End Here -->
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                
                 <!-- Footer Static Bottom Area End Here -->
             </div>
             <!-- Footer Area End Here -->

@@ -97,7 +97,9 @@ class AdminProductController extends Controller
             {
                 $Hinh = Str::random(4)."_".$filename;
             }
-            $file->move("public/Hinh",$Hinh);
+             $large_path='public/Hinh/'.$Hinh;
+             Image::make($file->getRealPath())->resize(300,300)->save($large_path);
+            // $file->move("public/Hinh",$Hinh);
             $product->image = $Hinh;
              }
         $product->save();

@@ -14,7 +14,7 @@ Route::group(['namespace'=>'Frontend'],function(){
 		Route::get('/','Homecontroller@getHome');
 		Route::get('loaisanpham/{id}/{alias}','Listproductcontroller@getloaisanpham');
 		Route::get('details/{id}','Listproductcontroller@view_details')->name('admin.transaction.index');
-		Route::get('tim-kiem','Frontendcontroller@getloaisanpham')->name('tim-kiem');
+		Route::get('tim-kiem','Listproductcontroller@getloaisanpham')->name('tim-kiem');
 		Route::post('/autocomplete/fetch', 'Frontendcontroller@fetch')->name('autocomplete.fetch');
 		Route::get('Details/{id}/{alias}','ProductDetailController@getdetails');
 

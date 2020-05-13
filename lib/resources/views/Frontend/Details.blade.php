@@ -130,7 +130,12 @@
                    </div>
                                     </div>
                                     <div class="price-box pt-20">
-                                        <span class="new-price new-price-2">{!! number_format($products->price,0,',','.') !!}</span>
+                                        @if($products->pro_sale)
+                                        <span style="" class="new-price new-price-2">{!! number_format($products->price * (100 - $products->pro_sale)/100,0,',','.') !!} VNĐ</span>
+                                        <p style="text-decoration: line-through;">{!! number_format($products->price,0,',','.') !!} VNĐ</p>
+                                        @else
+                                        <span style="" class="new-price new-price-2">{!! number_format($products->price,0,',','.') !!} VNĐ</span>
+                                        @endif
                                     </div>
                                     <div class="product-desc">
                                         <p>
@@ -347,30 +352,37 @@
                                         <!-- single-product-wrap start -->
                                         <div class="single-product-wrap">
                                             <div class="product-image">
-                                                <a href="single-product.html">
+                                                <a href="{{asset('Details/'.$item->id.'/'.$item->alias)}}">
                                                     <img src="{{asset('public/Hinh/'.$item->image)}}" alt="Li's Product Image">
                                                 </a>
-                                                <span class="sticker">New</span>
+                                                @if($item->pro_sale)
+                                                <span class="sticker">- {{$item->pro_sale}}%</span>
+                                                @endif
                                             </div>
                                             <div class="product_desc">
                                                 <div class="product_desc_info">
                                                     <div class="product-review">
                                                         <h5 class="manufacturer">
-                                                            <a href="product-details.html">Graphic Corner</a>
+                                                            <a href="product-details.html">{{$cate->name}}</a>
                                                         </h5>
                                                         <div class="rating-box">
-                                                            <ul class="rating">
-                                                                <li><i class="fa fa-star-o"></i></li>
-                                                                <li><i class="fa fa-star-o"></i></li>
-                                                                <li><i class="fa fa-star-o"></i></li>
-                                                                <li class="no-star"><i class="fa fa-star-o"></i></li>
-                                                                <li class="no-star"><i class="fa fa-star-o"></i></li>
-                                                            </ul>
+                                 <?php
+                     $age = 0;
+                     $star = 0;
+                      if($item->pro_total_rating !=0)
+                      {
+                        $age = round($item->pro_total_number / $item->pro_total_rating,1);
+                        $star = ($age / 5)*100;
+                      }
+                    ?>
+                   <div class="stars-outer">
+                        <div class="stars-inner" style="width: {{$star}}%"></div>
+                   </div>
                                                         </div>
                                                     </div>
-                                                    <h4><a class="product_name" href="single-product.html">Accusantium dolorem1</a></h4>
+                                                    <h4><a class="product_name" href="single-product.html">{{$item->name}}</a></h4>
                                                     <div class="price-box">
-                                                        <span class="new-price">$46.80</span>
+                                                        <span class="new-price">{!! number_format($item->price,0,',','.') !!} VNĐ</span>
                                                     </div>
                                                 </div>
                                                 <div class="add-actions">

@@ -13,7 +13,7 @@ class Listproductcontroller extends Controller
 {
      public function getloaisanpham(Request $request)
     {
-        $id = \Request::segment(2);
+        $id = \Request::segment(2) ? \Request::segment(2) : $request->cate;
         $products = Product::where('pro_active',Product::STATUS_PUBLIC);
         $cateproduct=[];
         $key='';
@@ -77,8 +77,8 @@ class Listproductcontroller extends Controller
                     break;
             }
         }
-
-        $products=$products->paginate(1);
+        $products=$products->paginate(4);
+      
 
     	$cate = Category::select('id','alias','name')->find($id);
     	$viewdata = [
@@ -86,7 +86,7 @@ class Listproductcontroller extends Controller
     		'products'=>$products,
     		'cate'=>$cate,
             'query'=>$request->query(),
-            'key'=>$key
+            'key'=>$key,
     	];
 
     	return view ('frontend.listProduct',$viewdata);

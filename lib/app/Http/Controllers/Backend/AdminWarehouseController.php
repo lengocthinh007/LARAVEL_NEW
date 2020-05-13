@@ -18,6 +18,11 @@ class AdminWarehouseController extends Controller
     }
 
      public function tongquang(){
+       
+        $Transaction=Transaction::addselect('id','pay_type','total','address','phone','created_at','status')->get();
+        $totaltransaction =Transaction::select('id')->count();
+        $totaltransactiondone =Transaction::where('status',Transaction::STATUS_DONE)->select('id')->count();
+
         $moneyDay = Transaction::whereDay('updated_at',date('d'))
         ->where('status',Transaction::STATUS_DONE)
         ->sum('total');
@@ -48,7 +53,10 @@ class AdminWarehouseController extends Controller
             ]
         ];
         $viewdata=[
-            'datamoney'=>json_encode($datamoney)
+            'datamoney'=>json_encode($datamoney),
+             'Transaction'=> $Transaction,
+            'totaltransaction'=>$totaltransaction,
+            'totaltransactiondone'=>$totaltransactiondone
         ];
        return view ('Backend.Home.index',$viewdata);
     }

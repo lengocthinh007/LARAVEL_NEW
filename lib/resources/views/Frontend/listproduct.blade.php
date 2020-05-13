@@ -98,6 +98,8 @@
                             </div>
                             <!-- shop-top-bar end -->
                             <!-- shop-products-wrapper start -->
+                           
+                @if(!$products->isEmpty())
                             <div class="shop-products-wrapper">
                                 <div class="tab-content">
                                     <div id="grid-view" class="tab-pane fade active show" role="tabpanel">
@@ -112,7 +114,9 @@
                                                             <a href="{{asset('Details/'.$item->id.'/'.$item->alias)}}">
                                                                 <img width="50px" src="{{asset('public/Hinh/'.$item->image)}}" alt="Li's Product Image">
                                                             </a>
-                                                            <span class="sticker">New</span>
+                                                @if($item->pro_sale)
+                                                <span class="sticker">- {{$item->pro_sale}}%</span>
+                                                @endif
                                                         </div>
                                                         <div class="product_desc">
                                                             <div class="product_desc_info">
@@ -137,7 +141,7 @@
                                                                 </div>
                                                                 <h4><a class="product_name" href="{{asset('Details/'.$item->id.'/'.$item->alias)}}">{!! doimau($item->name,$key) !!}</a></h4>
                                                                 <div class="price-box">
-                                                                    <span class="new-price">{!! number_format($item->price,0,',','.') !!}</span>
+                                                                    <span class="new-price">{!! number_format($item->price,0,',','.') !!} VNĐ</span>
                                                                 </div>
                                                             </div>
                                                             <div class="add-actions">
@@ -161,9 +165,21 @@
                 ?>
                                     <div class="paginatoin-area">
                                         <div class="row">
-                                            
+                        <?php
+                        $page    = $products->currentPage();
+                        $total   = $products->total();
+                        $perPage = $products->perPage();
+                        $lastNumber  = $page * $perPage;
+                        if ($lastNumber > $total) {
+                           $lastNumber = $total;
+                        }
+                        $currentShowing =$lastNumber>$total ? $total :$lastNumber;
+                        // $showingStarted = ($showingTotal - $perPage)+1;
+                        $showingStarted = $page * $perPage - ($perPage - 1);
+                        $tableInfo = "Showing $showingStarted to $lastNumber of $total";
+                        ?>
                                             <div class="col-lg-6 col-md-6 pt-xs-15">
-
+                                                <p>{{$tableInfo}}</p>
                                             </div>
                                          
                                             <div class="col-lg-6 col-md-6">
@@ -187,6 +203,9 @@
                                 </div>
                             </div>
                             <!-- shop-products-wrapper end -->
+                  @else
+                  <h3 style="text-align: center;margin-top: 50px">Không Tìm Thấy !</h3>
+                  @endif
                         </div>
                         <div class="col-lg-3 order-2 order-lg-1">
                             <!--sidebar-categores-box start  -->
@@ -225,7 +244,7 @@
                                     <h2>Lọc</h2>
                                 </div>
                                 <!-- btn-clear-all start -->
-                                <a href="{{asset('loaisanpham/'.$cate->id.'/'.$cate->alias)}}"><button class="btn-clear-all mb-sm-30 mb-xs-30">Clear all</button> </a>
+                                 <button id="reseturl" class="btn-clear-all mb-sm-30 mb-xs-30">Clear all</button>
                                 <!-- btn-clear-all end -->
                                 <!-- filter-sub-area start -->
                                 <div class="filter-sub-area">
@@ -313,6 +332,14 @@
         }
       });
     }); 
+  });
+     $('#reseturl').click(function(){
+      var uri = window.location.href.toString();
+        if (uri.indexOf("?") > 0) {
+            var clean_uri = uri.substring(0, uri.indexOf("?"));
+            window.history.replaceState({}, document.title, clean_uri);
+            location.reload();
+        }
   });
 </script> 
 @include('errors.front')

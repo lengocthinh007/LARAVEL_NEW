@@ -59,9 +59,16 @@
                                                 $qty = DB::table('products')->where('id', $item->id)->value('pro_number');
                                                 ?>
                                                 <td class="quantity">
-                                                        <input max="{{$qty}}" style="width: 30%;margin-left: 35%" class="form-control" type="number" value="{{$item->qty}}" onchange="updateCart(this.value,'{{$item->rowId}}')">
+                                                    <?php
+                                                     $dem =  DB::table('order')
+                                                        ->join('transaction', 'order.transaction_id', '=', 'transaction.id')
+                                                        ->where('product_id',$item->id)
+                                                        ->where('status',0)
+                                                        ->sum('qty');
+                                                    ?>
+                                                        <input max="{{$qty-$dem}}" style="width: 30%;margin-left: 35%" class="form-control" type="number" value="{{$item->qty}}" onchange="updateCart(this.value,'{{$item->rowId}}')">
                                                    
-                                                </td>
+                                                </td>fsdf
                                                 <td class="product-subtotal"><span style="font-weight: normal;" class="amount">{{number_format($item->price*$item->qty,0,',','.')}} đ</span></td>
                                             </tr>
                                             @endforeach

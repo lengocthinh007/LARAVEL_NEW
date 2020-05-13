@@ -46,7 +46,12 @@
                    </div>
                                             </div>
                                             <div class="price-box pt-20">
-                                                <span class="new-price new-price-2">{!! number_format($products->price,0,',','.') !!}VNĐ</span>
+                                        @if($products->pro_sale)
+                                        <span style="" class="new-price new-price-2">{!! number_format($products->price * (100 - $products->pro_sale)/100,0,',','.') !!} VNĐ</span>
+                                        <p style="text-decoration: line-through;">{!! number_format($products->price,0,',','.') !!} VNĐ</p>
+                                        @else
+                                        <span style="" class="new-price new-price-2">{!! number_format($products->price,0,',','.') !!} VNĐ</span>
+                                        @endif
                                             </div>
                                             <div class="product-desc">
                                                 <p>

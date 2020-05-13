@@ -47,6 +47,7 @@
                       <th>PT Thanh Toán</th>
                       <th>Trạng thái</th>
                       <th>Thời Gian</th>
+                      <th>Tùy Chọn</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -71,6 +72,9 @@
                     @endif
                   </td>
                    <td>{{$item['created_at']->format('d-m-Y')}}</td>
+                   <td>
+                     <a href="{{asset('admin/transaction/view'.$item['id'])}}" data-key="{{$item['id']}}" class="btn btn-warning js_order_item"><span class="glyphicon glyphicon-edit"></span> Xem</a>
+                   </td>
                           </tr>
                        @endforeach
                        @endif
@@ -80,7 +84,26 @@
         </div>
       </div>
 
-
+<!-- Modal -->
+   <div class="modal fade" id="myModalorder" role="dialog">
+    <div class="modal-dialog modal-lg">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+         
+          <h4 class="modal-title" style="float: left">Chi tiết đơn hàng có mã #<b class="transaction_id"></b></h4>
+        </div>
+        <div class="modal-body" id="md_content">
+          <p>Some text in the modal.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Đóng</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
       <!-- Them nhieu anh -->
      
       <div class="col-sm-12">
@@ -89,5 +112,25 @@
     </div><!--/.row-->
 @stop
 @section('script')
-
+<script type="text/javascript">
+ 
+  $(function(){
+    $('.js_order_item').click(function(event){
+      event.preventDefault();
+      let $this = $(this);
+      let url = $this.attr('href');
+      $("#md_content").html('');
+      $(".transaction_id").text('').text($this.attr('data-key'));
+      $("#myModalorder").modal('show');
+     $.ajax({
+        url: url,
+      }).done(function(result) {
+        if(result)
+        {
+          $("#md_content").append(result);
+        }
+      });
+    }); 
+  });
+</script>
 @stop
