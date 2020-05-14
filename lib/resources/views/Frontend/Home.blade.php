@@ -509,7 +509,6 @@
       }).done(function(result) {
         if(result)
         {
-            console.log(result);
           $("#md_content").append(result);
           // Hieu ung slide
              Detail();   

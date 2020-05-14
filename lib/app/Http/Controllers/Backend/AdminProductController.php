@@ -35,7 +35,11 @@ class AdminProductController extends Controller
     public function postedit(productrequest $request,$id){
                   
          $this-> InsertOrupdate($request,$id);
-         return redirect()->intended('admin/product/')->with(['level'=>'success','message'=>'Sửa thành công']);
+         $notification = array(
+                'message' => 'Sửa Thành Công!',
+                'alert-type' => 'success'
+            );
+         return redirect()->intended('admin/product/')->with($notification);
     }
       public function getdelete(Request $request,$id){
      

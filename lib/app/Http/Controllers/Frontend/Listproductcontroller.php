@@ -77,7 +77,7 @@ class Listproductcontroller extends Controller
                     break;
             }
         }
-        $products=$products->paginate(4);
+        $products=$products->paginate(9);
       
 
     	$cate = Category::select('id','alias','name')->find($id);

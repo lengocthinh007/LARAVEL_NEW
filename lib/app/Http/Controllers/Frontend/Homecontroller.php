@@ -13,8 +13,8 @@ class Homecontroller extends Controller
     	$products = Product::where('pro_active',Product::STATUS_PUBLIC)->orderBy('id','DESC')->take(6)->get();
     	$pro_pay = Product::where('pro_active',Product::STATUS_PUBLIC)->orderBy('pro_pay','DESC')->take(6)->get();
     	$pro_popu = Product::where('pro_active',Product::STATUS_PUBLIC)->orderBy('pro_total_number','DESC')->take(6)->get();
-    	$pro_laptop = Product::where('pro_active',Product::STATUS_PUBLIC)->where('cate_id',3)->orderBy('id','DESC')->take(6)->get();
-    	$pro_audio = Product::where('pro_active',Product::STATUS_PUBLIC)->where('cate_id',3)->orderBy('id','DESC')->take(6)->get();
+    	$pro_laptop = Product::where('pro_active',Product::STATUS_PUBLIC)->where('cate_id',4)->orderBy('id','DESC')->take(6)->get();
+    	$pro_audio = Product::where('pro_active',Product::STATUS_PUBLIC)->where('cate_id',5)->orderBy('id','DESC')->take(6)->get();
     	$cate_home = Category::with('products')->limit(3)->get();
     	$viewdata = [
     		'products'=>$products,
