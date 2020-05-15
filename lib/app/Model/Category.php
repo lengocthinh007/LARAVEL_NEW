@@ -9,8 +9,10 @@ class Category extends Model
     protected $table = 'cates';
      protected $primaryKey = 'id';
      protected $guarded = [];
+
       public function products()
      {
-     	return $this->hasMany(Product::class,'cate_id')->take(3);
+     	return $this->hasMany(Product::class,'cate_id');
      }
+     
 }

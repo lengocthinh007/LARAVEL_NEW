@@ -419,19 +419,27 @@
                 <div class="container">
                     <div class="row">
                         <!-- Begin Featured Product Area -->
-                        @if($cate_home)
-					    @foreach($cate_home as $cate)
+
+                        @if($categories)
+					    @foreach($categories as $cate)
                         <div class="col-lg-4">
                             <div class="featured-product">
                                 <div class="li-section-title">
                                     <h2>
-                                        <span>{{$cate->name}}</span>
+                                     <?php
+                                                 $cate_name = DB::table('cates')->select('name')->where('id',$cate[0]->cate_id)->first();
+                                      ?>
+                                        <span>
+                                          {{$cate_name->name}}
+                                        </span>
+                                   
+                                    
                                     </h2>
                                 </div>
+                               @if($cate)
                                 <div class="featured-product-active-2 owl-carousel">
                                     <div class="featured-product-bundle">
-                                    	@if($cate->products)
-					                    @foreach($cate->products as $item)
+					                    @foreach($cate as $item)
                                         <div class="row">
                                             <div class="group-featured-pro-wrapper">
                                                 <div class="product-img">
@@ -442,9 +450,6 @@
                                                 <div class="featured-pro-content">
                                                     <div class="product-review">
                                                         <h5 class="manufacturer">
-                                                 <?php
-                                                 $cate_name = DB::table('cates')->select('name')->where('id',$item->cate_id)->first();
-                                                 ?>
                                                             <a href="{{asset('Details/'.$item->id.'/'.$item->alias)}}">{{$cate_name->name}}</a>
                                                         </h5>
                                                     </div>
@@ -470,9 +475,9 @@
                                             </div>
                                         </div>
                                         @endforeach
-                          				@endif
                                     </div>
                                 </div>
+                                 @endif
                             </div>
                         </div>
                          @endforeach

@@ -5,6 +5,7 @@ namespace App\Model;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 
+
 class Product extends Model
 {
     protected $table = 'products';
@@ -42,4 +43,5 @@ class Product extends Model
      {
      	return  Arr::get($this->hot,$this->pro_hot,'[N/A]');
      }
+    
 }

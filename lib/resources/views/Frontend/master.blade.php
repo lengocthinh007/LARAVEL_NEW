@@ -257,14 +257,11 @@
                                     <div class="footer-logo">
                                         <img width="200px" height="70px" src="images/menu/logo/1.PNG" alt="Footer Logo">
                                         <p class="info">
-                                            We are a team of designers and developers that create high quality HTML Template & Woocommerce, Shopify Theme.
+                                           Chúng tôi là một nhóm các nhà thiết kế và nhà phát triển tạo ra Mẫu HTML & Wooc Commerce chất lượng cao, Shopify Theme.
                                         </p>
                                     </div>
                                     <ul class="des">
-                                        <li>
-                                            <span>Address: </span>
-                                            6688Princess Road, London, Greater London BAS 23JK, UK
-                                        </li>
+                                       
                                         <li>
                                             <span>Phone: </span>
                                             <a href="#">(+123) 123 321 345</a>
@@ -279,12 +276,12 @@
                                 <!-- Begin Footer Block Area -->
                                 <div class="col-lg-2 col-md-3 col-sm-6">
                                     <div class="footer-block">
-                                        <h3 class="footer-block-title">Product</h3>
+                                        <h3 class="footer-block-title">Sản Phẩm</h3>
                                         <ul>
-                                            <li><a href="#">Prices drop</a></li>
-                                            <li><a href="#">New products</a></li>
-                                            <li><a href="#">Best sales</a></li>
-                                            <li><a href="#">Contact us</a></li>
+                                            <li><a href="#">Giảm Giá</a></li>
+                                            <li><a href="#">Sản Phẩm Mới</a></li>
+                                            <li><a href="#">Bán Chạy</a></li>
+                                            <li><a href="#">Liên Hệ</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -292,12 +289,12 @@
                                 <!-- Begin Footer Block Area -->
                                 <div class="col-lg-2 col-md-3 col-sm-6">
                                     <div class="footer-block">
-                                        <h3 class="footer-block-title">Our company</h3>
+                                        <h3 class="footer-block-title">Công Ty</h3>
                                         <ul>
-                                            <li><a href="#">Delivery</a></li>
-                                            <li><a href="#">Legal Notice</a></li>
-                                            <li><a href="#">About us</a></li>
-                                            <li><a href="#">Contact us</a></li>
+                                            <li><a href="#">Giới Thiệu</a></li>
+                                            <li><a href="#">Thông báo pháp lý</a></li>
+                                            <li><a href="#">Về chúng tôi</a></li>
+                                            <li><a href="#">Liên Hệ</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -341,7 +338,7 @@
                                     </div>
                                     <!-- Begin Footer Newsletter Area -->
                                     <div class="footer-newsletter">
-                                        <h4>Sign up to newsletter</h4>
+                                        <h4>Đăng Ký Nhận Bản Tin</h4>
                                         <form action="#" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="footer-subscribe-form validate" target="_blank" novalidate>
                                            <div id="mc_embed_signup_scroll">
                                               <div id="mc-form" class="mc-form subscribe-form form-group" >
