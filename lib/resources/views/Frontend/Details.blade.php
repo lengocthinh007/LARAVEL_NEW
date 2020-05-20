@@ -69,6 +69,26 @@
   font-weight: 900;
   color: #f8ce0b;
 }
+
+
+
+.hideContent {
+    overflow: hidden;
+    line-height: 1em;
+    height: 10em;
+}
+
+.showContent {
+    line-height: 1em;
+    height: auto;
+}
+.showContent{
+    height: auto;
+}
+.show-more {
+    padding: 10px 0;
+    text-align: center;
+}
 </style>   
   <div class="breadcrumb-area">
                 <div class="container">
@@ -180,9 +200,12 @@
                     </div>
                     <div class="tab-content">
                         <div id="description" class="tab-pane active show" role="tabpanel">
-                            <div class="product-description">
+                            <div class="product-description content hideContent" >
                                 <span>{!! $products->pro_content !!}</span>
                             </div>
+                            <div class="show-more">
+                                    <a href="#">Hiển Thị Thêm</a>
+                             </div>
                         </div>
                     
                         <div id="reviews" class="tab-pane" role="tabpanel">
@@ -407,6 +430,7 @@
             </section>
 @stop
 @section('script')
+<script src="js/jquery-ui.js"></script>
 <script type="text/javascript">
     //danh gia
         $.ajaxSetup({
@@ -483,6 +507,23 @@
                 alert('Chưa nhập nội dung hoặc đánh giá');
             }
         });
+
+ $(".show-more a").on("click", function(e) {
+    e.preventDefault();
+    var $this = $(this); 
+    var $content = $this.parent().prev("div.content");
+    var linkText = $this.text().toUpperCase(); 
+    
+    if(linkText === "HIỂN THỊ THÊM"){
+        linkText = "Thu gọn";
+        $content.switchClass("hideContent", "showContent", 400);
+    } else {
+        linkText = "Hiển Thị Thêm";
+        $content.switchClass("showContent", "hideContent", 400);
+    };
+
+    $this.text(linkText);
+});
 </script>
 @include('errors.front')
 @stop

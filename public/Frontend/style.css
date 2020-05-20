@@ -1463,6 +1463,7 @@ textarea:focus {
 	position: relative;
 }
 .select-search-category ul.list {
+	z-index: 1000;
 	overflow-y: auto;
 	overscroll-behavior-x: none;
 }
