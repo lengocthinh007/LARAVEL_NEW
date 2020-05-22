@@ -10,7 +10,7 @@ use DB;
 class Homecontroller extends Controller
 {
     public function getHome(){
-    	$products = Product::where('pro_active',Product::STATUS_PUBLIC)->orderBy('id','DESC')->take(6)->get();
+    	$pro_new = Product::where('pro_active',Product::STATUS_PUBLIC)->orderBy('id','DESC')->take(6)->get();
     	$pro_pay = Product::where('pro_active',Product::STATUS_PUBLIC)->orderBy('pro_pay','DESC')->take(6)->get();
     	$pro_popu = Product::where('pro_active',Product::STATUS_PUBLIC)->orderBy('pro_total_number','DESC')->take(6)->get();
     	$pro_laptop = Product::where('pro_active',Product::STATUS_PUBLIC)->where('cate_id',4)->orderBy('id','DESC')->take(6)->get();
@@ -27,7 +27,7 @@ class Homecontroller extends Controller
             }
      
             	$viewdata = [
-    		'products'=>$products,
+    		'pro_new'=>$pro_new,
     		'pro_pay'=>$pro_pay,
     		'pro_popu'=>$pro_popu,
     		'pro_laptop'=>$pro_laptop,

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th5 15, 2020 lúc 11:08 AM
+-- Thời gian đã tạo: Th5 22, 2020 lúc 05:33 AM
 -- Phiên bản máy phục vụ: 10.1.38-MariaDB
 -- Phiên bản PHP: 7.3.2
 
@@ -508,7 +508,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `password`, `email`, `phone`, `address`, `avatar`, `active`, `total_pay`, `code`, `time_code`, `code_active`, `time_active`, `remember_token`, `created_at`, `updated_at`) VALUES
-(32, 'Nguyễn Minh', '$2y$10$viw0iZK6.8baCyrIIF0vru7eLnl3WCL1Wy5e5UO7GF2n7y3Sn8w.a', 'Khachhang@abc', 90127458, NULL, NULL, 1, 0, NULL, NULL, '$2y$10$9Ap.6dYUX9oyEc7XAFvFE.oyoAYFQ.tzu0P/hlgarM8GxZw8CLPLK', '2020-05-15 09:04:27', '5YB2NiGA6HQn9277ksvuGXOu4j4jgF4Gc7SwNNzfsydeWslykjs0qgjUra8m', '2020-05-15 09:04:27', '2020-05-15 09:04:27');
+(32, 'Nguyễn Minh', '$2y$10$viw0iZK6.8baCyrIIF0vru7eLnl3WCL1Wy5e5UO7GF2n7y3Sn8w.a', 'Khachhang@abc', 90127458, 'bến tre', 'yvAb_81235782_1245266008998861_4379076409356713984_n.jpg', 2, 0, NULL, NULL, '$2y$10$9Ap.6dYUX9oyEc7XAFvFE.oyoAYFQ.tzu0P/hlgarM8GxZw8CLPLK', '2020-05-15 09:04:27', 'xkvHmsDDW4wg3vMtxhFH8eD4mD6mJ5Z6ot0sRs9Xfaj72wYoUK7nMtxAftV9', '2020-05-15 09:04:27', '2020-05-21 08:52:42'),
+(33, 'Lê Trung', '$2y$10$j69.iXVOUQu45oAPjXN.Juk.IheVTEOrUusuNB.uc3gbWbOtOzEva', 'nobita@abc', 944566, 'bến tre', NULL, 1, 0, NULL, NULL, '$2y$10$6ncyyS3V4lBCTfH2Y..ftOP..4Ftuhtfzx23dN.u1zvGdtutVFbWC', '2020-05-21 08:56:13', NULL, '2020-05-21 08:56:13', '2020-05-21 09:05:23');
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -670,7 +671,7 @@ ALTER TABLE `transaction`
 -- AUTO_INCREMENT cho bảng `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- Các ràng buộc cho các bảng đã đổ

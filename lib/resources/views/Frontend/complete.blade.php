@@ -1,8 +1,23 @@
 @extends('Frontend.master')
 @section('title','Thank You')
+@section('link')
+ <link rel="stylesheet" type="text/css" href="step/main.css">
+ <link href='https://fonts.googleapis.com/css?family=Alegreya+Sans' rel='stylesheet' type='text/css'>
+@stop
 @section('main') 
 <link rel="stylesheet" href="css/complete.css">
-					<div id="wrap-inner">
+<div class="container">
+           <div class="row" style="margin-bottom: 4%;margin-top:4%">
+                        <div class="col-md-12" style="text-align: center;">
+                             <ul class="progressbar" style="margin-left: 20%">
+					            <li class="active">Cart</li>
+					            <li class="active">Checkout</li>
+					            <li class="active">Thank you</li>
+        					</ul>
+                        </div>
+            </div>
+           <div class="row">
+					<div id="wrap-inner" style="margin-left: 8% !important">
 						<div id="complete">
 							<p class="info">Quý khách đã đặt hàng thành công!</p>
 							<p>• Hóa đơn mua hàng của Quý khách đã được chuyển đến Địa chỉ Email có trong phần Thông tin Khách hàng của chúng Tôi</p>
@@ -12,7 +27,9 @@
 							<p>Cám ơn Quý khách đã sử dụng Sản phẩm của Công ty chúng Tôi!</p>
 						</div>
 						<p class="text-right return"><a href="{{asset('/')}}">Quay lại trang chủ</a></p>
-					</div>			
+					</div>		
+			 </div>	
+	</div>
 @stop
 @section('script')
 @include('errors.front')

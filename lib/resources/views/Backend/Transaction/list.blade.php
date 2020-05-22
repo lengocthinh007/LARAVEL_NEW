@@ -5,7 +5,6 @@
 			<div class="col-lg-12">
 				<div class="panel panel-default">
 				  <div class="table-responsive" style="padding: 10px" >
-				  <a style="margin-bottom: 10px" href="{{asset('admin/category/add/')}}" class="btn btn-primary">Thêm danh mục</a>
               <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                   <tr>

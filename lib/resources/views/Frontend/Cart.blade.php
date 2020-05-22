@@ -1,5 +1,8 @@
 @extends('Frontend.master')
 @section('title','Cart')
+@section('link')
+ <link rel="stylesheet" type="text/css" href="step/main.css">
+@stop
 @section('main') 
 <style type="text/css">
     .bold {
@@ -32,6 +35,15 @@
             <!--Shopping Cart Area Strat-->
             <div class="Shopping-cart-area pt-60 pb-60">
                 <div class="container">
+                       <div class="row" style="margin-bottom: 50px">
+                        <div class="col-md-12" style="text-align: center;">
+                             <ul class="progressbar" style="margin-left: 20%">
+                                <li class="active">Cart</li>
+                                <li >Checkout</li>
+                                <li >Thank you</li>
+                            </ul>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col-12">
                             @if(Cart::count()>=1)
@@ -68,7 +80,7 @@
                                                     ?>
                                                         <input max="{{$qty-$dem}}" style="width: 30%;margin-left: 35%" class="form-control" type="number" value="{{$item->qty}}" onchange="updateCart(this.value,'{{$item->rowId}}')">
                                                    
-                                                </td>fsdf
+                                                </td>
                                                 <td class="product-subtotal"><span style="font-weight: normal;" class="amount">{{number_format($item->price*$item->qty,0,',','.')}} đ</span></td>
                                             </tr>
                                             @endforeach

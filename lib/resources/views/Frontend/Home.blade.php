@@ -53,8 +53,8 @@
                         <div id="li-new-product" class="tab-pane active show" role="tabpanel">
                             <div class="row">
                                 <div class="product-active owl-carousel">
-                                	 @if(isset($products))
-                                     @foreach($products as $item)
+                                	 @if(isset($pro_new))
+                                     @foreach($pro_new as $item)
                                     <div class="col-lg-12">
                                         <!-- single-product-wrap start -->
                                         <div class="single-product-wrap">

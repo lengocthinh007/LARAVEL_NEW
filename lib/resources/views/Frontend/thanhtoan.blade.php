@@ -23,7 +23,7 @@
                         <div class="col-md-12" style="text-align: center;">
                              <ul class="progressbar" style="margin-left: 20%">
 					            <li class="active">Cart</li>
-					            <li >Checkout</li>
+					            <li class="active">Checkout</li>
 					            <li >Thank you</li>
         					</ul>
                         </div>

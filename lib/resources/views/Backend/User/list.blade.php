@@ -27,7 +27,11 @@
                   <td style="vertical-align: middle;">{!! $item->name !!}</td>
                   <td style="vertical-align: middle;">{!! $item->email !!}</td>
                   <td style="vertical-align: middle;">0{!! $item->phone !!}</td> 
+                  @if($item->avatar != null)
                   <td><img src="{{asset('public/Avatar/'.$item->avatar)}}" width="50px"></td>
+                  @else
+                  <td><img src="{{asset('public/HinhDetails/small/hinhloi.PNG')}}" width="50px"></td>
+                  @endif
                   <td style="vertical-align: middle;">
                               <a href="{{asset('admin/user/edit/'.$item->id)}}" class="btn btn-warning"><span class="glyphicon glyphicon-edit"></span> Sửa</a>
                               <a href="{{asset('admin/user/delete/'.$item->id)}}" onclick="return xacnhanxoa('Bạn có chắc chắn muốn xóa?')" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> Xóa</a>

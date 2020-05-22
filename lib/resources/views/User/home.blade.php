@@ -132,5 +132,9 @@
       });
     }); 
   });
+
+  $(document).ready(function() {
+      $('#dataTable').DataTable();
+  });
 </script>
 @stop

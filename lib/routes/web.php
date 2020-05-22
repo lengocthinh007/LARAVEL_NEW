@@ -128,9 +128,10 @@ Route::group(['namespace'=>'Backend','middleware'=>'Checkloginadmin'],function()
 		});
 		Route::group(['prefix'=>'transaction'],function(){
 		Route::get('/','Admintransactioncontroller@index')->name('admin.transaction.index');
-		Route::get('/view{id}','Admintransactioncontroller@vieworder')->name('admin.transaction.index');
 		Route::get('/active/{id}','Admintransactioncontroller@activetransaction');
 		Route::get('/delete/{id}','Admintransactioncontroller@delete');
 		});
 	});
 });
+
+Route::get('admin/transaction/view{id}','Backend\Admintransactioncontroller@vieworder')->name('admin.transaction.index');

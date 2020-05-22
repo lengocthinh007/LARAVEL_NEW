@@ -318,21 +318,21 @@ Note: main.js, All Default Scripting Languages For This Theme Included In This F
 /*----------------------------------------*/
 /* 17. Price slider
 /*----------------------------------------*/
- var sliderrange = $('#slider-range');
- var amountprice = $('#amount');
- $(function() {
-     sliderrange.slider({
-         range: true,
-         min: 0,
-         max: 1200,
-         values: [300, 800],
-         slide: function(event, ui) {
-             amountprice.val("$" + ui.values[0] + " - $" + ui.values[1]);
-         }
-     });
-     amountprice.val("$" + sliderrange.slider("values", 0) +
-         " - $" + sliderrange.slider("values", 1));
- });
+ // var sliderrange = $('#slider-range');
+ // var amountprice = $('#amount');
+ // $(function() {
+ //     sliderrange.slider({
+ //         range: true,
+ //         min: 0,
+ //         max: 1200,
+ //         values: [300, 800],
+ //         slide: function(event, ui) {
+ //             amountprice.val("$" + ui.values[0] + " - $" + ui.values[1]);
+ //         }
+ //     });
+ //     amountprice.val("$" + sliderrange.slider("values", 0) +
+ //         " - $" + sliderrange.slider("values", 1));
+ // });
  /*----------------------------------------*/
  /* 18. Category menu Activation
  /*----------------------------------------*/
@@ -415,7 +415,7 @@ Note: main.js, All Default Scripting Languages For This Theme Included In This F
  $('.product-details-images').each(function(){
      var $this = $(this);
      var $thumb = $this.siblings('.product-details-thumbs, .tab-style-left');
-     $this.slick({
+     $this.not('.slick-initialized').slick({
         arrows: false,
         slidesToShow: 1,
         slidesToScroll: 1,
@@ -431,7 +431,7 @@ Note: main.js, All Default Scripting Languages For This Theme Included In This F
  $('.product-details-thumbs').each(function(){
      var $this = $(this);
      var $details = $this.siblings('.product-details-images');
-     $this.slick({
+     $this.not('.slick-initialized').slick({
         slidesToShow: 4,
         slidesToScroll: 1,
         autoplay: false,
@@ -449,7 +449,7 @@ Note: main.js, All Default Scripting Languages For This Theme Included In This F
  $('.tab-style-left, .tab-style-right').each(function(){
      var $this = $(this);
      var $details = $this.siblings('.product-details-images');
-     $this.slick({
+     $this.not('.slick-initialized').slick({
         slidesToShow: 3,
         slidesToScroll: 1,
         autoplay: false,
@@ -520,22 +520,22 @@ qty();
 /*----------------------------------------*/
 /* 24. Star Rating Js
 /*----------------------------------------*/
-    $(function() {
-          $('.star-rating').barrating({
-            theme: 'fontawesome-stars'
-        });
-    });
-/*----------------------------------------*/
+//     $(function() {
+//           $('.star-rating').barrating({
+//             theme: 'fontawesome-stars'
+//         });
+//     });
+// /*----------------------------------------*/
 /* 25. Zoom Product Venobox
 /*----------------------------------------*/
-    $('.venobox').venobox({
-        spinner:'wave',
-        spinColor:'#cb9a00',
-    });
+    // $('.venobox').venobox({
+    //     spinner:'wave',
+    //     spinColor:'#cb9a00',
+    // });
 /*----------------------------------------*/
 /* 26. WOW
 /*----------------------------------------*/
-    new WOW().init();
+    // new WOW().init();
 })(jQuery);
 /*----------------------------------------------------------------------------------------------------*/
 /*------------------------------------------> The End <-----------------------------------------------*/

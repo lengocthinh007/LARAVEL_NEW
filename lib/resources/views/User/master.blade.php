@@ -8,10 +8,10 @@
 	<meta name="csrf-token" content="{{ csrf_token() }}" />
 	<title>@yield('title')</title>
 	<link href="css/bootstrap.min.css" rel="stylesheet">
-	<link rel='stylesheet' href='../fontawesome/css/all.min.css'>
+	<!-- <link rel='stylesheet' href='../fontawesome/css/all.min.css'> -->
 	<link href="css/styles.css" rel="stylesheet">
 	<link rel="stylesheet" href="datatables/dataTables.bootstrap4.css">
-	<script type="text/javascript" src="../editor/ckeditor/ckeditor.js"></script>
+	<!-- <script type="text/javascript" src="../editor/ckeditor/ckeditor.js"></script> -->
 	<!--Custom Font-->
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 	<!--[if lt IE 9]>
@@ -19,7 +19,7 @@
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
 	<link href="../toastr/toastr.min.css" rel="stylesheet">
-	<link rel="stylesheet" href="../formupload/css/style.css">
+	<!-- <link rel="stylesheet" href="../formupload/css/style.css"> -->
 	@yield('link')
 </head>
 <body>
@@ -96,6 +96,6 @@
 <script src="datatables/jquery.dataTables.js"></script>
 <script src="datatables/dataTables.bootstrap4.js"></script>
  @yield('script')
-<script src="../formupload/js/app.js"></script>
+<!-- <script src="../formupload/js/app.js"></script> -->
 </body>
 </html>

@@ -410,9 +410,8 @@
                                                 </div>
                                                 <div class="add-actions">
                                                     <ul class="add-actions-link">
-                                                        <li class="add-cart active"><a href="#">Add to cart</a></li>
-                                                        <li><a href="#" title="quick view" class="quick-view-btn" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-eye"></i></a></li>
-                                                        <li><a class="links-details" href="wishlist.html"><i class="fa fa-heart-o"></i></a></li>
+                                                        <li class="add-cart active"><a href="#">Chọn Mua</a></li>
+                                                      <li><a href="{{asset('details/'.$item['id'])}}" data-key="{{$item['id']}}" class="quick-view-btn js_review"><i class="fa fa-eye"></i></a></li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -428,8 +427,40 @@
                     </div>
                 </div>
             </section>
+
+              <!--   Modal -->
+              <div class="modal fade modal-wrapper" id="myModalorder" >
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content" id="md_content">
+                        
+                    </div>
+                </div>
+            </div>   
 @stop
 @section('script')
+<script type="text/javascript">
+     $(function(){
+    $('.js_review').click(function(event){
+      event.preventDefault();
+      let $this = $(this);
+      let url = $this.attr('href');
+      $("#md_content").html('');
+      $("#myModalorder").modal('show');
+     $.ajax({
+        url: url,
+      }).done(function(result) {
+        if(result)
+        {
+          $("#md_content").append(result);
+          // Hieu ung slide
+             Detail();   
+             qty();         
+          // Hieu ung slide
+        }
+      });
+    }); 
+  });
+</script>
 <script src="js/jquery-ui.js"></script>
 <script type="text/javascript">
     //danh gia
@@ -524,6 +555,8 @@
 
     $this.text(linkText);
 });
+
+
 </script>
 @include('errors.front')
 @stop

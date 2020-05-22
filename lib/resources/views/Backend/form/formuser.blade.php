@@ -39,13 +39,13 @@
                     <label>Kích Hoạt</label>
                     <div class="radio">
                       <label>
-                        <input type="radio" name="active" id="active" value="1" {{isset($data['avatar']) && $data['active'] ==1 ? 'checked' : ''}}>Có
+                        <input type="radio" name="active" value="2" {{isset($data['active']) && $data['active'] ==2 ? 'checked' : ''}}>Có
                       </label>
                     </div>
                     <div class="radio">
                       <label>
-                        <input type="radio" name="active" id="active" value="0"
-                        {{isset($data)&&$data['active']==0 ? 'checked' : ''}}>Không
+                        <input type="radio" name="active" value="1"
+                        {{isset($data['active'])&&$data['active']==1 ? 'checked' : ''}}>Không
                       </label>
                     </div>
                      @if($errors->has('active'))
